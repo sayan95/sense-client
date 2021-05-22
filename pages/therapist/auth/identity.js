@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import {useRouter}  from 'next/router';
 import * as appRedux from '../../../redux/application/index';
 
-import {wrapper} from '../../../redux/store';
 
 // component imports
 import TherapistLayout from '../../../layouts/TherapistLayout';
