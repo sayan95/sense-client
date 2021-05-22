@@ -1,0 +1,66 @@
+/* form group container */
+.form-group-container{
+    margin-bottom: 20px;
+
+    /* form groups */
+    .form-group{
+        position: relative;
+        width: 100%;
+        display: block;
+        z-index: 10;
+        /* input label */
+        .form-label{
+            display: block;
+            font-size: 16px;
+            color: $color-gray-400;
+            margin-left: 5px;
+        }
+
+        /* input control */
+        .form-control, .form-control-icon{
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 10px;   
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid $color-gray-200 ;
+            transition: all .5s;
+            z-index: 10;
+            color: $color-gray-600;
+            &.error, &.error:focus{
+                border: 1px solid $color-red-400;
+            }
+            /* input on focus */
+            &:focus{
+                outline: none;
+                border: 1px solid $color-blue-400;
+            }
+            /* input placeholder */
+            &::placeholder{
+                color:$color-gray-300;
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+        }
+        .form-control{padding-left: 15px;}
+        .form-control-icon{ padding-left:35px;}
+        /* input control icon */
+        .form-icon{
+            position: absolute;
+            z-index: 100;
+            top:50%;
+            left:10px;
+            transform:translateY(-50%);
+            font-size: 18px;
+            color: $color-gray-400;
+        }
+    }
+
+    /* form error message*/
+    .form-error{
+        position: relative;
+        font-size: 13px;
+        color: $color-red-400;
+    }
+}

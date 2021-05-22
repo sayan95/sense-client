@@ -1,0 +1,21 @@
+/* checkbox container */
+.checkbox-container{
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    /* checkbox control */
+    .checkbox-control{
+        cursor: pointer;
+    }
+    /* checkbox label */
+    .checkbox-label{
+        font-size: 13.2px;
+        margin-left: 10px;
+        color: $color-gray-500;
+        a{
+            color: $color-blue-500;
+            font-weight: bold;
+        }
+    }
+}

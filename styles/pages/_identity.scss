@@ -1,0 +1,120 @@
+/*thrapist main content*/
+.therapist-auth--main{          
+    min-height: 100vh;
+    display: flex;
+    background: url('/assets/images/wave-footer.png')no-repeat;
+    background-size: contain;
+    background-position:bottom ;
+
+    /* small screen */
+    @include for-tablet-landscape-up(){
+        background-size: cover;
+    }
+
+    /* Left pane */
+    &-leftPane{    
+        display: block;                 
+        width:48%;
+        min-height: 100vh;
+        
+        /* Nav bar */
+        &-nav{
+            padding:1.5rem 0 0 3.5rem;
+            /* nav item 1 */
+            &-item-1{
+                display: flex;
+                h3{ 
+                    color: $color-blue-500;
+                    font-size: 25px;
+                    letter-spacing: 2px;
+                    span:nth-child(2){font-size: 30px;}
+                }
+            }
+            
+            /* nav item 2 */
+            &-item-2{
+                font-size: 14px;
+                letter-spacing: 2px;
+                margin-left: 10px;
+                color: $color-gray-400;
+            }
+        }
+        /* left pane image container */
+        &-imageContainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0 15px 0;
+            height: calc(100vh - 80px); 
+            div{
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        /* for small screen devices: tablets, phones*/
+        @include for-tablet-landscape-up{
+            display: none;                 
+        }
+    }   
+
+    /* Right pane */
+    &-rightPane{   
+        position: relative;                      
+        width: calc(100vw - 48%);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        /* mobile and tablet device (lsess than 900px ) */ 
+        @include for-tablet-landscape-up(){
+            width:100%;
+            flex-direction: column;
+            justify-content: unset;
+            padding-top: 90px;
+        }
+        /* heading for small devices */
+        &-heading{ 
+            visibility: hidden;
+            /* small screen*/
+            @include for-tablet-landscape-up(){
+                visibility: visible;
+                margin-bottom: 50px;
+            }
+            &-item-1{
+                display: flex;
+                font-size: 25px;
+                letter-spacing: 2px;
+                color: $color-blue-500;
+                span:nth-child(2){ font-size: 30px;}
+            }
+            &-item-2{
+                text-align: center;
+                color: $color-gray-400;
+                letter-spacing: 2px;
+            }
+        }      
+        /* Therapist login component */
+        .therapist-auth--login, .therapist-auth--signup{
+            /* heading */
+            &-heading{
+                font-family: 'titillium-600';
+                color: $color-blue-500;
+                font-size: 28px;
+                letter-spacing: 1px;
+                text-align: center;
+            }
+            /* subheading */
+            &-footer-item-1, &-footer-item-2{
+                font-family: 'titillium-600'; 
+                letter-spacing: 1px;
+                margin-top:3px;
+                font-size: 13px;
+                a{
+                    font-size: 12px;
+                    color: $color-blue-500;
+                    font-weight: bold;
+                }
+            }
+        } 
+    }
+}

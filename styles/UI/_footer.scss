@@ -1,0 +1,21 @@
+// footer container
+.footer-container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px;
+    padding-bottom: 40px;
+    text-align: center;
+    width: 100%;
+
+    // footer text
+    .footer-text{
+        color: #fff;
+        font-size: 13px;
+        transform: translateX(3%);
+        @include for-tablet-landscape-up(){
+            transform: translateX(0);
+        }
+        a{ color: $color-blue-500}
+    }
+}

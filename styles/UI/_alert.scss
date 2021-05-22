@@ -1,0 +1,40 @@
+/* alert component */
+.alert{
+    position: relative;
+    max-width:100%;
+    padding: 10px;
+    padding-left: 16px;
+    border-radius: 5px;
+    box-shadow: 0 6px 10px 0 $color-gray-200;
+    &::after{
+        content:'';
+        position: absolute;
+        top:0;
+        left:0;
+        width: 10px;
+        height: 100%;
+        border-radius: 5px 0 0 5px;
+    }
+    
+    /* alert content area */
+    &-content{
+        display: flex;
+        width: 300px;
+        /* alert icon */
+        &-icon{
+            font-size: 16.8px;
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+        /* alert text */
+        &-text{
+            font-size: 13.3px;
+            line-break: strict;
+        }
+    }
+
+    /* primary alert */
+    &-primary{
+        @include alert-theme($color-blue-500)
+    }
+}

@@ -1,0 +1,61 @@
+/* import animations */
+@import './animation/animate.css';
+
+// import fonts 
+@import './fonts/fonts';
+
+/* import colors */
+@import './shared/colors';
+
+/* import mixins*/
+@import './mixins/mixin';
+
+/* import ui componnets */
+@import './UI/navbar';
+@import './UI/card';
+@import './UI/textfield';
+@import './UI/button';
+@import './UI/checkbox';
+@import './UI/alert';
+@import './UI/loader';
+@import './UI/footer';
+
+/* Base design settings*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html, body{
+    font-family: 'lato-regular';
+    min-height: 100vh;
+}
+a:link{
+    text-decoration: none;
+}
+
+/* custom scrollbar for the entire application */
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255, 0.3);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(167, 166, 166);
+    border-radius: 10px;
+    transition: all .5s;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Import pages */
+@import './pages/identity';
