@@ -65,6 +65,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        overflow-x: hidden;
         /* mobile and tablet device (lsess than 900px ) */ 
         @include for-tablet-landscape-up(){
             width:100%;
@@ -78,7 +79,7 @@
             /* small screen*/
             @include for-tablet-landscape-up(){
                 visibility: visible;
-                margin-bottom: 50px;
+                margin-bottom: 30px;
             }
             &-item-1{
                 display: flex;
@@ -93,7 +94,7 @@
                 letter-spacing: 2px;
             }
         }      
-        /* Therapist login component */
+        /* Therapist login & signup component */
         .therapist-auth--login, .therapist-auth--signup{
             /* heading */
             &-heading{
@@ -115,6 +116,32 @@
                     font-weight: bold;
                 }
             }
-        } 
+        }
+
+        /* otp verification component */
+        .therapist-auth--otpverification{
+            height: 100%;
+            &-header{
+                text-align: center;
+                font-family: 'titillium-regular';
+                font-weight: 400;
+                font-size: 17px;
+            }
+            &-timer{
+                margin-top: 15px;
+                font-weight: 400;
+                font-size: 14px;
+                text-align: center;
+            }
+            &-links{
+                font-size: 12px;
+                margin-bottom: 10px;
+                font-family: oswald-regular;
+                letter-spacing: 1px;
+                a{
+                    color: $color-blue-500;
+                }
+            }
+        }
     }
 }

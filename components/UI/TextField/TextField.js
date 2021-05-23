@@ -29,7 +29,7 @@ TextField.propTypes = {
     placeholder: PropTypes.string,
     type: PropTypes.string.isRequired,
     iconClass: PropTypes.string,
-    error: PropTypes.string,
+    error: PropTypes.any,
     event: PropTypes.func 
 }
 

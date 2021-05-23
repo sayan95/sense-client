@@ -3,18 +3,18 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    padding: 25px;
-    padding-bottom: 40px;
+    padding: 15px;
     text-align: center;
     width: 100%;
-
+    transform: translateX(5%);
     // footer text
     .footer-text{
         color: #fff;
         font-size: 13px;
         transform: translateX(3%);
         @include for-tablet-landscape-up(){
-            transform: translateX(0);
+            transform: translateX(-5%);
+            padding-bottom: 15px;
         }
         a{ color: $color-blue-500}
     }

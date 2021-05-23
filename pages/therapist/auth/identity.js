@@ -1,9 +1,10 @@
 // dependency imports
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import dynamic from 'next/dynamic';
 import {useRouter}  from 'next/router';
 import * as appRedux from '../../../redux/application/index';
+import * as therapistAuthRedux from '../../../redux/therapist/index';
 
 
 // component imports
@@ -13,6 +14,7 @@ import Rightpane from '../../../components/Therapist/identity/Rightpane/Rightpan
 import LoginComponent from '../../../components/Therapist/identity/Rightpane/LoginComponent/LoginComponent';
 import Card from '../../../components/UI/Card/Card';
 import Loader from '../../../components/UI/Loader/Loader';
+import {withGuest} from '../../../components/Therapist/identity/HOC/WithGuest';
 
 // dynamic component loads
 const SignupComponent = dynamic(() => import('../../../components/Therapist/identity/Rightpane/SignupComponent/SignupComponent'))
@@ -28,46 +30,99 @@ const Identity = () => {
     const dispatch = useDispatch();
 
     // local states
-    const allowedPageModes = ['sign-in', 'sign-up', 'activate-account'];
+    const allowedPageModes = ['sign-in', 'sign-up', 'activate-account'];        // page mode white list
+    const [authForm, setAuthForm] = useState({                                 //  auth form fields
+        email : '',     
+        password:'',
+        password_confirmation: '',
+        remember_me: false,
+        otp:'' 
+    });
 
     // states from store
     const pageMode = useSelector(state => state.app.pageMode);
     const pageLoading = useSelector(state => state.app.pageLoading);
     const responseStatus = useSelector(state => state.app.responseStatus);
+    const authAlertType = useSelector(state => state.therapistAuth.alertType);
 
     // page side effects
     useEffect(() => {
-        // decide the page modes
-        dispatch(appRedux.actions.setPageLoading(true));
-        dispatch(appRedux.actions.setPageMode('sign-in'));
-
-        // set page mode
-        if(page){
-            if(allowedPageModes.includes(page)){ dispatch(appRedux.actions.setPageMode(page));}
-            else{ dispatch(appRedux.actions.setResponseStatus(404));}
+        // determines page mode
+        if(!page){dispatch(appRedux.actions.setPageMode('sign-in'));}
+        else{ 
+            if(allowedPageModes.includes(page)){
+                dispatch(appRedux.actions.setPageMode(page));
+            }else{
+                dispatch(appRedux.actions.setResponseStatus(404));
+            }
         }
 
-        // chage page based on application response status
-        if(responseStatus){
-            responseStatus === 404 ? router.push('/404') : ''
+        // change pageMode based on auth alert type
+        if(authAlertType){
+            switch(authAlertType){
+                case 'otp-sent':
+                    pageModeDispatcher('activate-account');
+                    break;
+                case 'account-not-verified':
+                    pageModeDispatcher('activate-account');
+                    break;
+                default:
+                    break;
+            }
         }
 
-        dispatch(appRedux.actions.setPageLoading(false));
-        
-    }, [page, pageMode, responseStatus]);
+        // move to 404 page
+        if(responseStatus && responseStatus === 404){
+            router.replace('/404');
+        }
+
+    }, [page, authAlertType, responseStatus]);
+
     // toggles page mode
-    const togglePageModehandler = () => {
-        if(pageMode === 'sign-in'){ 
-            dispatch(appRedux.actions.setPageMode('sign-up')); 
-            router.push('/therapist/auth/identity?page=sign-up');
-        }
-        if(pageMode === 'sign-up'){ 
-            dispatch(appRedux.actions.setPageMode('sign-in'));
-            router.push('/therapist/auth/identity?page=sign-in');
+    const togglePageModehandler = async () => { 
+         // clear any success or error message if exists first
+         await dispatch(therapistAuthRedux.actions.setAuthError(''));
+
+         // toggle page mode
+        if(pageMode === 'sign-in'){
+            pageModeDispatcher('sign-up');
+        }else if(pageMode === 'sign-up'){
+            pageModeDispatcher('sign-in');
         }
     }
+
+    // auth form input change handler
+    const inputChangeHandler = (e) => {
+        if(e.target.name === 'remember_me'){
+            setAuthForm({
+                ...authForm,
+                [e.target.name] : e.target.checked
+            });
+        }else{
+            setAuthForm({
+                ...authForm,
+                [e.target.name] : e.target.value
+            });
+        }   
+    }
+
     // initiate login process
-    const loginActionHandler = (e) => { e.preventDefault();}
+    const loginActionHandler = async (e) => { 
+        e.preventDefault(); 
+        await dispatch(therapistAuthRedux.dispatchers.loginTherapist(authForm));
+    }
+
+    // therapist registration handler
+    const signupHandler = async (e) => {
+        e.preventDefault();
+        await dispatch(therapistAuthRedux.dispatchers.registerTherapist(authForm));
+    }
+
+    // page mode dispatcher
+    const pageModeDispatcher = async (pageMode) => {
+        await dispatch(appRedux.actions.setPageMode(pageMode));
+        router.replace(`/therapist/auth/identity?page=${pageMode}`);
+    }
 
     // jsx
     return (
@@ -82,10 +137,16 @@ const Identity = () => {
                     <Rightpane>
                         <Card border={true}>
                             {   pageMode === 'sign-in' 
-                                ?   <LoginComponent pageToggle={togglePageModehandler} loginAction={loginActionHandler}/>
-                                :   pageMode === 'activate-account' 
+                                ?   <LoginComponent pageToggle={togglePageModehandler} 
+                                        loginAction={loginActionHandler}
+                                        inputChangeAction={inputChangeHandler}
+                                    />
+                                :   pageMode === 'activate-account'
                                 ?   <OTPVerificationComponent/>
-                                :   <SignupComponent pageToggle={togglePageModehandler}/> 
+                                :   <SignupComponent pageToggle={togglePageModehandler} 
+                                        signupAction={signupHandler} 
+                                        inputChangeAction={inputChangeHandler} 
+                                    />
                             }
                         </Card>
                     </Rightpane>
@@ -96,4 +157,4 @@ const Identity = () => {
 }
 
 
-export default Identity;
+export default withGuest(Identity);

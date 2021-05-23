@@ -1,5 +1,6 @@
 // dependency imports
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import Image from 'next/image';
 
@@ -12,7 +13,11 @@ import Button from "../../../../UI/Button/Button";
 import CheckBox from "../../../../UI/CheckBox/CheckBox";
 
 // Therapist login component
-const LoginComponent = ({loginAction, pageToggle}) => {
+const LoginComponent = ({loginAction, pageToggle, inputChangeAction}) => {
+  // state from store
+  const error = useSelector(state => state.therapistAuth.error);
+  
+  // jsx content
   return (
     <Fragment>
       <div className="therapist-auth--login animate__animated animate__fadeInLeft animate__faster">
@@ -28,9 +33,9 @@ const LoginComponent = ({loginAction, pageToggle}) => {
         <CardBody>
             {/** Login form  */}
             <form method='POST' onSubmit={loginAction}>
-                <TextField name='email' type='text' placeholder='Enter email' iconClass='las la-envelope'/>
-                <TextField name='password' type='password' placeholder='Enter password' iconClass='las la-key'/>
-                <CheckBox name='remember_me' label='Remember me'/>
+                <TextField name='email' event={inputChangeAction} type='text' placeholder='Enter email' iconClass='las la-envelope' error={error && error.email ? error.email: ''}/>
+                <TextField name='password' event={inputChangeAction} type='password' placeholder='Enter password' iconClass='las la-key' error={error && error.password ? error.password : ''}/>
+                <CheckBox name='remember_me' event={inputChangeAction} label='Remember me'/>
                 <Button type='submit' isBlock={true} color='primary'>Sign in</Button>
             </form>
         </CardBody>
@@ -48,7 +53,8 @@ const LoginComponent = ({loginAction, pageToggle}) => {
 // props validation
 LoginComponent.propTypes = {
   loginAction: PropTypes.func.isRequired,
-  pageToggle: PropTypes.func.isRequired
+  pageToggle: PropTypes.func.isRequired,
+  inputChangeAction: PropTypes.func.isRequired
 };
 
 export default LoginComponent;

@@ -13,8 +13,8 @@ const bindMiddleware = middleware => {
 }
 
 // initialize store
-const initStore = (initialState) => {
-    return createStore(rootReducer, initialState, bindMiddleware([thunk]))
+const initStore = () => {
+    return createStore(rootReducer, bindMiddleware([thunk]))
 }
 
 // wrap the store and attch new store instance with each request
