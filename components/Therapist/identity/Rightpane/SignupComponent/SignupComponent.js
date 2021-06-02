@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import TextField from '../../../../UI/TextField/TextField';
 import CheckBox from '../../../../UI/CheckBox/CheckBox';
 import Button from '../../../../UI/Button/Button';
-import Alert from '../../../../UI/Alert/Alert';
 
 // dynamic component imports
 const CardHeader = dynamic(() => import('../../../../UI/Card/CardHeader'));
@@ -43,7 +42,7 @@ const SignupComponent = ({pageToggle, signupAction, inputChangeAction}) => {
                     {/** Signup form */}
                     <form method='POST'>
                         <TextField name='email' event={inputChangeAction} type='text' placeholder='Enter email' iconClass='las la-envelope' error={errors && errors.email ? errors.email : ''}/>
-                        <TextField name='password' event={inputChangeAction} type='password' placeholder='Enter password' iconClass='las la-key' error={errors && errors.password ? errors.password : ''}/>
+                        <TextField name='password' event={inputChangeAction} type='password' placeholder='Enter password' iconClass='las la-key' error={errors && errors.password ? errors.password[0] : ''}/>
                         <TextField name='password_confirmation' event={inputChangeAction} type='password' placeholder='Confirm password' iconClass='las la-key' error={errors && errors.password_confirmation ? errors.password_confirmation: ''}/>
                         <CheckBox name='accept' label={TnCLabel} event={()=> {setsignupDisabled(!signupDisabled)}}/> 
                         <Button disabled={signupDisabled} type='submit' isBlock={true} color='primary' event={signupAction}>Sign up</Button>

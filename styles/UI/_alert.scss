@@ -5,7 +5,10 @@
     padding: 10px;
     padding-left: 16px;
     border-radius: 5px;
-    box-shadow: 0 6px 10px 0 $color-gray-200;
+    margin: 10px;
+    &.elevated{
+        box-shadow: 0 6px 10px 0 $color-gray-200;
+    }
 
     &::after{
         content:'';
@@ -15,12 +18,14 @@
         width: 10px;
         height: 100%;
         border-radius: 5px 0 0 5px;
+        
     }
     
     /* alert content area */
     &-content{
         display: flex;
-        width: 300px;
+        width: 230px;
+        line-break: strict;
         /* alert icon */
         &-icon{
             font-size: 16.8px;

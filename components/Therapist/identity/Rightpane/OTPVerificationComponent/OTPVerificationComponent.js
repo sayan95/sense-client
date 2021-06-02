@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 
 
+import { useSelector } from 'react-redux';
+import Alert from '../../../../UI/Alert/Alert';
+
+
 // component imports
 const Button = dynamic(() => import('../../../../UI/Button/Button'));
 const CardBody = dynamic(() => import('../../../../UI/Card/CardBody'));
@@ -12,9 +16,14 @@ const CardHeader = dynamic(() => import('../../../../UI/Card/CardHeader'));
 const TextField = dynamic(() => import('../../../../UI/TextField/TextField'));
 
 // Therapist OTP verification component
-const OTPVerificationComponent = ({back}) => {
+const OTPVerificationComponent = ({verficationAction, inputChangeAction, resendOTPAction}) => {
     // local state
-    const [timer, setTimer] = useState('3:00');                    // timer state
+    const [timer, setTimer] = useState('3:00');                  // timer state
+
+    // states from store
+    const error = useSelector(state => state.therapistAuth.error);
+    const success = useSelector(state => state.therapistAuth.success);
+    const alertType = useSelector(state => state.therapistAuth.alertType);
 
     // side effects
     useEffect(() => {
@@ -43,30 +52,56 @@ const OTPVerificationComponent = ({back}) => {
         <Fragment>  
             <div className='therapist-auth--otpverification animate__animated animate__fadeInRight animate__faster'>
                 <CardHeader>
-                    <h5 className='therapist-auth--otpverification-header'>
-                        <p>Enter the otp sent to your email</p>
-                    </h5>
+                    {/* show info alert about the verfication status */}
+                    {alertType && alertType === 'account-not-verified'
+                    ? <Alert type='primary' content={error} />
+                    : alertType && alertType === 'otp-timeout'
+                    ? <Alert type='primary' content={error}/>
+                    : alertType && alertType === 'invalid-attempter'
+                    ? <Alert type='primary' content={error}/>
+                    :  alertType && alertType === 'otp-resend'
+                    ?  <Alert type='success' content={success}/>
+                    : ''
+                    }
                 </CardHeader>
                 <CardBody>
-                    <TextField name='otp' type='text' placeholder='Enter OTP'  iconClass='las la-qrcode'/>
-                    <Button isBlock={true} color='primary'>verify</Button>
+                    {alertType !== 'invalid-attempter' ?
+                        <h5 className='therapist-auth--otpverification-header'>
+                            <p>Enter the otp sent to your email</p>
+                        </h5>:''
+                    }
+                    {/** verification form  */}
+                    <form onSubmit={verficationAction} method='POST'>
+                        <TextField name='otp' type='text' placeholder='Enter OTP' 
+                            event={inputChangeAction} iconClass='las la-qrcode' 
+                            error={error && alertType === 'otp-mismatch' ? error: ''}
+                        />
+                        <Button type='submit' isBlock={true} color='primary'>verify</Button>
+                    </form>
+
+                    {/* resend otp link and timer */}
                     <p className='therapist-auth--otpverification-timer'>
                         {
-                            timer === '0:00' 
-                            ?<span>Not recieved OTP yet ? <a onClick={resendOTPEvent} className='text-blue-500 cursor-pointer'>Resend OTP</a></span>
-                            :<span>Resend OTP in {timer} </span>
+                            alertType && alertType === 'otp-timeout' || alertType === 'otp-resend'
+                            ?<span> <a href="#" onClick={resendOTPAction} className='text-blue-500 cursor-pointer'>Resend OTP</a></span>
+                            : alertType && alertType === 'invalid-attempter'
+                            ?  ''
+                            : timer === '0:00' 
+                            ?<span>Not recieved OTP yet ? <a href="#" onClick={resendOTPAction} className='text-blue-500 cursor-pointer'>Resend OTP</a></span>
+                            : <span>Resend OTP in {timer} </span>
                         }
                     </p>
                 </CardBody>
                 <CardFooter>
+                    {/* some important links  */}
                     <p className='therapist-auth--otpverification-links'>
                         <i className='las la-arrow-left'></i>
                         <span>
-                            <a href='/therapist/auth/identity?page=sign-in'>Back to sign in</a>
+                            <a href='/therapist/auth/identity?page=sign-in' className='text-blue-500'>Back to sign in</a>
                         </span>
                     </p>
                     <p className='therapist-auth--otpverification-links'>
-                        Having trouble in OTP recieving ? <a href='#'>let us know</a> 
+                        Having trouble in OTP recieving ? <a href='#' className='text-blue-500'>let us know</a> 
                     </p>
                 </CardFooter>
             </div>
@@ -76,7 +111,9 @@ const OTPVerificationComponent = ({back}) => {
 
 // props validation
 OTPVerificationComponent.propTypes = {
-    back: PropTypes.func.isRequired
+    verficationAction: PropTypes.func.isRequired,
+    inputChangeAction: PropTypes.func.isRequired,
+    resendOTPAction : PropTypes.func.isRequired
 }
 
 export default OTPVerificationComponent

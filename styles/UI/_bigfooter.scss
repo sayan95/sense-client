@@ -1,0 +1,106 @@
+.big-footer{
+    position: relative;
+    background-color: $color-gray-50;
+    bottom: 0;
+    width: 100%;
+    .primary-content{ 
+        padding: 80px;
+        @include for-phone-only{
+            padding: 20px 50px;
+        }
+
+        .grid-container{
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 1fr;
+            gap: 0px 0px;
+            grid-template-areas:
+                "col-1 col-1 col-2 col-2 col-3 col-3";
+            @include for-phone-only{
+                grid-template-columns: repeat(1, 1fr);
+                grid-template-areas:
+                "col-1"
+                "col-2"
+                "col-3";
+            }
+            .col-1{
+                grid-area: col-1;
+                .barnd-holder{
+                    .main-heading{
+                        display: flex;
+                        align-items: center;
+                        @include for-phone-only{
+                            justify-content: center;
+                        }
+                        h3{
+                            font-family: 'oswald-regular';
+                            font-size: 28px;
+                            text-transform: capitalize;
+                            letter-spacing: 2px;
+                            color: $color-blue-600
+                        }
+                    }
+                    .sub-heading{
+                        @include for-tablet-landscape-up{
+                            display: flex;
+                            justify-content: center;
+                        }
+                        h6{
+                            font-size: 14px;
+                            letter-spacing: 1px;
+                            font-family: 'lato-regular';
+                            margin-left: 11px;
+                            color: $color-gray-600;
+                        }
+                    }
+                }
+            }
+            .col-2{
+                grid-area: col-2;
+                display: flex;
+                justify-content: space-between;
+                .services, .quick-links{
+                    h6{ 
+                        position: relative;
+                        font-family: 'oswald-regular';
+                        font-size: 18px;
+                        color: $color-gray-600;
+                        letter-spacing: 2px;
+                        padding-left: 10px;
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            height: 100%;
+                            width: 3px;
+                            background: $color-blue-500;
+                            left:0;
+                        }
+                    }
+                    ul{
+                        list-style: none;
+                        margin-top: 20px;
+                        li{margin: 10px 0;
+                            a{
+                                font-size: 14px;
+                                color: $color-gray-400;
+                            }
+                        }
+                    }
+                }
+            }
+            .col-3{
+                grid-area: col-3; 
+                text-align: center;
+                @include for-phone-only{
+                    padding: 50px 0 100px 0;
+                }
+            }
+            .col{
+                height: 100px;
+                @include for-tablet-landscape-up{
+                    margin: 15px 0;
+                }
+            }
+        }
+    }
+}

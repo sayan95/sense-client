@@ -14,3 +14,13 @@ export const applicationState = {
     success: '',
     error: ''
 }
+
+// therapist service datas
+export const therapistServiceDataState = {
+    languages : [],
+    degrees : [],
+    ageGroups: [],
+    therapyProfiles: [],
+    experties: [],
+    specializations: []
+}

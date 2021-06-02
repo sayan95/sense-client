@@ -1,0 +1,70 @@
+.therapist-profile-create-success--container{
+    min-height: 100vh;
+    height: 100vh;
+    .main-content{
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+            "col-1 col col col col col col col-3";
+        @include for-tablet-landscape-up{
+            grid-template-areas:
+                "col col col col col col col col";
+        }
+        min-height: 100vh;
+        .col { 
+            position: relative;
+            grid-area: col;
+            //border: 1px solid green;
+            .image-container{
+                padding: 15px 20px;
+                //border: 1px solid red;
+                text-align: center;
+                .brand-holder{
+                    display: flex;
+                    div{ img { height: 65px; width: 65px; opacity: 1;}}
+                    align-items: center;
+                    h3{
+                        font-size: 28px;
+                        text-transform: capitalize;
+                        color: $color-blue-500;
+                        letter-spacing: 4px;
+                        font-family: 'oswald-regular';
+                    }
+                }
+                img{
+                    opacity: .75;
+                }
+            }
+
+            // message container
+            .message-container{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                h3{
+                    font-size: 28px;
+                    font-family: 'oswald-regular';
+                    color: $color-blue-700;
+                    letter-spacing: 5px;
+                }
+                p{
+                    font-size: 18px;
+                    letter-spacing: 3px;
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+
+            }
+        }
+    }
+
+    // footer
+    .footer{
+        
+    }
+}

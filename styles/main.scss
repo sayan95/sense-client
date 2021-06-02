@@ -4,11 +4,14 @@
 // import fonts 
 @import './fonts/fonts';
 
-/* import colors */
+/* import shared utils */
 @import './shared/colors';
+@import './shared/text';
+@import './shared/util';
 
 /* import mixins*/
 @import './mixins/mixin';
+
 
 /* import ui componnets */
 @import './UI/navbar';
@@ -19,6 +22,10 @@
 @import './UI/alert';
 @import './UI/loader';
 @import './UI/footer';
+@import './UI/bigfooter';
+@import './UI/select';
+@import './UI/progressbar';
+@import './UI/modal';
 
 /* Base design settings*/
 *{
@@ -58,4 +65,6 @@ a:link{
 }
 
 /* Import pages */
-@import './pages/identity';
+@import './pages/therapist/identity';
+@import './pages/therapist/profile-create';
+@import './pages/therapist/profile-create-success';

@@ -1,11 +1,11 @@
 import React from 'react'
 
-const create = () => {
+const test = () => {
     return (
         <div>
-            
+            This is the profile page
         </div>
     )
 }
 
-export default create
+export default test

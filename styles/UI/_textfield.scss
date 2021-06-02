@@ -1,19 +1,19 @@
 /* form group container */
 .form-group-container{
     margin-bottom: 20px;
-
+    
     /* form groups */
     .form-group{
         position: relative;
         width: 100%;
         display: block;
-        z-index: 10;
         /* input label */
         .form-label{
             display: block;
             font-size: 16px;
             color: $color-gray-400;
             margin-left: 5px;
+            margin-bottom: 5px;
         }
 
         /* input control */
@@ -38,7 +38,7 @@
             }
             /* input placeholder */
             &::placeholder{
-                color:$color-gray-300;
+                color:$color-gray-400;
                 font-size: 14px;
                 letter-spacing: 1px;
             }

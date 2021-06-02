@@ -3,7 +3,7 @@
     font-family: 'lato-regular';
     font-style: normal;
     font-weight: 500;
-    font-display: optional;
+    //font-display: optional;
     src: url('/fonts/lato/lato-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
         url('/fonts/lato/lato-v17-latin-regular.woff') format('woff'),    /* Modern Browsers */
 }
@@ -12,7 +12,7 @@
     font-family: 'lato-700';
     font-style: normal;
     font-weight: 700;
-    font-display: optional;
+    ////font-display: optional;
     src: url('/fonts/lato/lato-v17-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
         url('/fonts/lato/lato-v17-latin-700.woff') format('woff'),    /* Modern Browsers */
 }
@@ -21,7 +21,7 @@
     font-family: 'oswald-regular';
     font-style: normal;
     font-weight: 400;
-    font-display: optional;
+    //font-display: optional;
     src: url('/fonts/oswald/oswald-v36-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
         url('/fonts/oswald/oswald-v36-latin-regular.woff') format('woff'),    /* Modern Browsers */
 }
@@ -30,7 +30,7 @@
     font-family: 'oswald-500';
     font-style: normal;
     font-weight: 500;
-    font-display: optional;
+    //font-display: optional;
     src: url('/fonts/oswald/oswald-v36-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
         url('/fonts/oswald/oswald-v36-latin-500.woff2') format('woff'),    /* Modern Browsers */
 }
@@ -40,7 +40,7 @@
     font-family: 'titillium-regular';
     font-style: normal;
     font-weight: 400;
-    font-display: optional;
+    //font-display: optional;
     src: url('/fonts/titillium/titillium-web-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
         url('/fonts/titillium/titillium-web-v9-latin-regular.woff') format('woff'),    /* Modern Browsers */
 }
@@ -50,7 +50,7 @@
     font-family: 'titillium-600';
     font-style: normal;
     font-weight: 600;
-    font-display: optional;
+    //font-display: optional;
     src: url('/fonts/titillium/titillium-web-v9-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
         url('/fonts/titillium/titillium-web-v9-latin-600.woff') format('woff'),    /* Modern Browsers */
 }
@@ -60,7 +60,7 @@
     font-family: 'titillium-700';
     font-style: normal;
     font-weight: 700;
-    font-display: optional;
+    //font-display: optional;
     src: url('/fonts/titillium/titillium-web-v9-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
         url('/fonts/titillium/titillium-web-v9-latin-700.woff') format('woff'),    /* Modern Browsers */
 }
@@ -68,7 +68,7 @@
 /* line awsome fonts */
 @font-face {
     font-family: 'la-solid-500';
-    font-display: optional;
+    //font-display: optional;
     src: url('/icons/line-awesome-master/dist/line-awesome/fonts/la-solid-900.woff')
          url('/icons/line-awesome-master/dist/line-awesome/fonts/la-solid-900.woff2');
 }

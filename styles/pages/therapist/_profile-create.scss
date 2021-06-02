@@ -1,0 +1,130 @@
+// profile create main container
+.therapist-profile-create--container {
+  min-height: 100vh;
+  height: 100vh;
+  .main-content{
+    background-color: $color-gray-50;
+    height: 100%;
+    padding : 30px 20px 0 20px;
+    margin-bottom: 100px;
+    // container
+    .container{
+      position: relative;
+      width: 100%;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 1px 10px $color-gray-200;
+      display: flex;
+      // left pane
+      .left-pane{
+        position: relative;
+        width: 23.33%;
+        @include for-tablet-landscape-up{
+          display: none;
+        }
+
+        // grid box
+        .box{
+          padding: 20px;
+          &-item{
+            padding: 20px;
+            margin: 20px;
+            cursor: pointer;
+            box-shadow: 0 1px 5px $color-gray-300;
+            font-family: 'oswald-regular';
+            color: $color-blue-500;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #fff;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            transition: box-shadow .2s ease-out;
+            span{
+              .las{
+                font-size: 24px;
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+        
+        // image container
+        .image-container{
+          // position: absolute;
+          // width:100%;
+          // bottom:0
+        }
+      }
+      // right pane
+      .right-pane{
+        
+        //border: 1px solid blue;
+        width: calc(100% - 23.333%);
+        padding: 38px;
+        @include for-tablet-landscape-up{
+          width: 100%;
+        }
+        // welcome-note
+        .welcome-note{
+          padding: 20px;
+          text-align: center;
+          background-color: $color-gray-50;
+          margin-bottom: 10px;
+          h3{ color: $color-gray-500; font-size: 20px;}
+        }
+
+        // personal details
+        .personal-details--header{
+          margin-bottom: 20px;
+          font-family: 'oswald-regular';
+          color: $color-blue-600;
+          letter-spacing: 2px;
+          font-size: 18px;
+          hr{
+            border-width: 20%;
+          }
+        }
+
+        // form  container
+        .personal-details--form-container{
+          
+          // input field rows
+          .form-container-row{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-column-gap: 20px;
+            @include for-tablet-landscape-up{
+              grid-template-columns: repeat(1, 1fr);
+              grid-template-rows: repeat(1, 1fr);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// modal contents
+.modal-personal-details, .modal-professional-details{
+  &-heading{
+    font-family: 'oswald-regular';
+    color: $color-blue-700;
+    letter-spacing: 2px;
+  }
+  &-body{
+    .box{
+      margin: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 10px;
+      &-item{
+        border: 1px solid $color-gray-300;
+        padding: 10px;
+        h4 { text-transform: capitalize; margin-bottom: 5px;}
+        p { font-size: 14px;}
+      }
+    }
+  }
+}

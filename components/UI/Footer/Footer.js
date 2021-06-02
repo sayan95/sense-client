@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <Fragment>
             <div className='footer-container'>
-                <p className='footer-text'>
+                <p className='footer-text '>
                     Copyright &copy; 2021 <a href='#'>Sense</a> India, Inc. All rights reserved.
                 </p>
             </div>

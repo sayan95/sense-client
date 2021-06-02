@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import dynamic from 'next/dynamic';
 import {useRouter}  from 'next/router';
+import {useToasts} from 'react-toast-notifications';
 import * as appRedux from '../../../redux/application/index';
 import * as therapistAuthRedux from '../../../redux/therapist/index';
 
@@ -13,8 +14,9 @@ import LeftPane from '../../../components/Therapist/identity/leftpane/LeftPane';
 import Rightpane from '../../../components/Therapist/identity/Rightpane/Rightpane';
 import LoginComponent from '../../../components/Therapist/identity/Rightpane/LoginComponent/LoginComponent';
 import Card from '../../../components/UI/Card/Card';
-import Loader from '../../../components/UI/Loader/Loader';
 import {withGuest} from '../../../components/Therapist/identity/HOC/WithGuest';
+import Progressbar from '../../../components/UI/Progressbar/Progressbar';
+import Loader from '../../../components/UI/Loader/Loader';
 
 // dynamic component loads
 const SignupComponent = dynamic(() => import('../../../components/Therapist/identity/Rightpane/SignupComponent/SignupComponent'))
@@ -28,6 +30,7 @@ const Identity = () => {
     const router = useRouter();
     const { page } = router.query;
     const dispatch = useDispatch();
+    const { addToast } = useToasts();
 
     // local states
     const allowedPageModes = ['sign-in', 'sign-up', 'activate-account'];        // page mode white list
@@ -40,54 +43,70 @@ const Identity = () => {
     });
 
     // states from store
+    //const user = useSelector(state => state.therapistAuth.user);
+    const isLoading = useSelector(state => state.therapistAuth.loading);
+    const isLoggedIn = useSelector(state => state.therapistAuth.isLoggedIn); 
     const pageMode = useSelector(state => state.app.pageMode);
     const pageLoading = useSelector(state => state.app.pageLoading);
     const responseStatus = useSelector(state => state.app.responseStatus);
     const authAlertType = useSelector(state => state.therapistAuth.alertType);
+    const error = useSelector(state => state.therapistAuth.error);
 
     // page side effects
     useEffect(() => {
         // determines page mode
-        if(!page){dispatch(appRedux.actions.setPageMode('sign-in'));}
-        else{ 
+        dispatch(appRedux.actions.setPageMode('sign-in'));
+        // determine page mode based on current page
+        if(page){
             if(allowedPageModes.includes(page)){
                 dispatch(appRedux.actions.setPageMode(page));
             }else{
                 dispatch(appRedux.actions.setResponseStatus(404));
             }
         }
-
-        // change pageMode based on auth alert type
+        // set page mode based on alert types
         if(authAlertType){
             switch(authAlertType){
                 case 'otp-sent':
-                    pageModeDispatcher('activate-account');
+                    router.replace('/therapist/auth/identity?page=activate-account');
                     break;
                 case 'account-not-verified':
-                    pageModeDispatcher('activate-account');
+                    router.replace('/therapist/auth/identity?page=activate-account');
+                    break;
+                case 'invalid-attempter':
+                    setAuthForm({});
+                    router.replace('/therapist/auth/identity?page=sign-in');
                     break;
                 default:
                     break;
             }
         }
-
-        // move to 404 page
+        //if userLogged in 
+        if(isLoggedIn){
+            dispatch(appRedux.actions.setPageLoading(true));
+            router.push('/therapist/profile/create');
+        }else{
+            dispatch(appRedux.actions.setPageLoading(false));
+        }
+    
+        // toggle page to 404
         if(responseStatus && responseStatus === 404){
             router.replace('/404');
         }
-
-    }, [page, authAlertType, responseStatus]);
+    }, [page, error, authAlertType, isLoggedIn, responseStatus]);
 
     // toggles page mode
     const togglePageModehandler = async () => { 
-         // clear any success or error message if exists first
-         await dispatch(therapistAuthRedux.actions.setAuthError(''));
+        // clear any success or error message if exists first
+        await dispatch(therapistAuthRedux.actions.setAuthError('')); 
+        dispatch(appRedux.actions.setPageMode('sign-in'));
 
-         // toggle page mode
         if(pageMode === 'sign-in'){
-            pageModeDispatcher('sign-up');
-        }else if(pageMode === 'sign-up'){
-            pageModeDispatcher('sign-in');
+            dispatch(appRedux.actions.setPageMode('sign-up'));
+            router.replace('/therapist/auth/identity?page=sign-up');
+        }else{
+            dispatch(appRedux.actions.setPageMode('sign-in'));
+            router.replace('/therapist/auth/identity?page=sign-in');
         }
     }
 
@@ -118,10 +137,15 @@ const Identity = () => {
         await dispatch(therapistAuthRedux.dispatchers.registerTherapist(authForm));
     }
 
-    // page mode dispatcher
-    const pageModeDispatcher = async (pageMode) => {
-        await dispatch(appRedux.actions.setPageMode(pageMode));
-        router.replace(`/therapist/auth/identity?page=${pageMode}`);
+    // otp verfication handler
+    const otpVerificationHandler = async(e) => {
+        e.preventDefault();
+        await dispatch(therapistAuthRedux.dispatchers.otpverification(authForm))
+    }
+
+    // resend otp mail handler
+    const resendOTPHandler = async (e) => {
+        await dispatch(therapistAuthRedux.dispatchers.resendOTP());
     }
 
     // jsx
@@ -131,6 +155,7 @@ const Identity = () => {
             {/** Therapist base layout */}
             <TherapistLayout pageTitle='therapist identity'>
                 <section className='therapist-auth--main'>
+                    {isLoading && <Progressbar/>}
                     {/** Left pane component */}
                     <LeftPane/>
                     {/** Right pane component */}
@@ -142,7 +167,10 @@ const Identity = () => {
                                         inputChangeAction={inputChangeHandler}
                                     />
                                 :   pageMode === 'activate-account'
-                                ?   <OTPVerificationComponent/>
+                                ?   <OTPVerificationComponent verficationAction={otpVerificationHandler}
+                                            inputChangeAction={inputChangeHandler}
+                                            resendOTPAction={resendOTPHandler}
+                                    />
                                 :   <SignupComponent pageToggle={togglePageModehandler} 
                                         signupAction={signupHandler} 
                                         inputChangeAction={inputChangeHandler} 

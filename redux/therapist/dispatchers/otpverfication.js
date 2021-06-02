@@ -1,24 +1,22 @@
 /**
- * ---------------------
- *  therapist auth login
- * ---------------------
+ * ---------------------------
+ *  therapist otp verification
+ * --------------------------- 
  */
 
 import axios from '../../../lib/axios.config';
 import * as therapistAuth from '../actions/therapistAuthAction';
 import {setResponseStatus} from '../../application/actions/appAction';
 
-// therapist login action
-export const loginTherapist = (form) => {
+// verifies otp and activates account 
+export const otpverification = (form) => {
     return async (fetch) => {
         fetch(therapistAuth.setAuthLoading(true));
         try{
-            const resp = await axios('/therapist/auth-api/login', {
+            const resp = await axios('/therapist/auth-api/auth/verify', {
                 method: "POST",
-                data: {
-                    email: form.email,
-                    password: form.password,
-                    remember_me: form.remember_me
+                data : {
+                    otp : form.otp 
                 }
             });
             fetch(therapistAuth.setTherapistUser(resp.data.user));
@@ -27,15 +25,14 @@ export const loginTherapist = (form) => {
             fetch(therapistAuth.setAuthSuccess(resp.data.message));
             fetch(setResponseStatus(resp.status));
         }catch(e){
-            if(e.response.data.errors){
-                fetch(therapistAuth.setAlertType('inavlid-entity'));
-                fetch(therapistAuth.setAuthError(e.response.data.errors));
-            }else if(e.response && e.response.data){
+            if(e.response.data){
+                console.log(e.response.data);
                 fetch(therapistAuth.setAlertType(e.response.data.alertType));
                 fetch(therapistAuth.setAuthError(e.response.data.message));
+                fetch(setResponseStatus(e.response.status));
             }
         }finally{
             fetch(therapistAuth.setAuthLoading(false));
         }
-    }   
-}
+    }
+} 

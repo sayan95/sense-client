@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // alert component
-const Alert = ({type, content}) => {
+const Alert = ({type, content, elevated}) => {
     const [alertType, setAlertType] = useState('alert-primary');
     const [iconClass, setIconClass] = useState('la-info-circle');
 
@@ -22,7 +22,7 @@ const Alert = ({type, content}) => {
 
     return (
         <Fragment>
-            <div className={`alert ${alertType} animate__animated animate__fadeInRight animate__fast`}>
+            <div className={`alert ${alertType} ${elevated ? 'elevated': ''} animate__animated animate__fadeInRight animate__fast`}>
                 <p className='alert-content'>
                     <span className='alert-content-icon'><i className={`las ${iconClass}`}></i></span>
                     <span className='alert-content-text'>{content}</span>
@@ -34,13 +34,15 @@ const Alert = ({type, content}) => {
 
 // default props
 Alert.defaultProps = {
-    type: 'primary'
+    type: 'primary',
+    elevated: false
 }
 
 // props validation
 Alert.propTypes = {
     type: PropTypes.string.isRequired,
-    content: PropTypes.string
+    content: PropTypes.string,
+    elevated: PropTypes.bool
 }
 
 export default Alert

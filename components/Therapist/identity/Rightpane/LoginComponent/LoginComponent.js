@@ -1,7 +1,8 @@
 // dependency imports
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { useToasts } from "react-toast-notifications";
 import Image from 'next/image';
 
 // components imports
@@ -12,11 +13,24 @@ import TextField from "../../../../UI/TextField/TextField";
 import Button from "../../../../UI/Button/Button";
 import CheckBox from "../../../../UI/CheckBox/CheckBox";
 
+
 // Therapist login component
 const LoginComponent = ({loginAction, pageToggle, inputChangeAction}) => {
+  // dependency
+  const { addToast } = useToasts();
+
   // state from store
+  const alertType = useSelector(state => state.therapistAuth.alertType); 
   const error = useSelector(state => state.therapistAuth.error);
+  const isLoading = useSelector(state => state.therapistAuth.loading);
   
+  // side effects
+  useEffect(() => {
+    if(alertType && alertType === 'invalid-attempter'){
+      addToast(error, {appearance : 'info'});
+    }
+  }, [alertType]);
+
   // jsx content
   return (
     <Fragment>
@@ -36,7 +50,7 @@ const LoginComponent = ({loginAction, pageToggle, inputChangeAction}) => {
                 <TextField name='email' event={inputChangeAction} type='text' placeholder='Enter email' iconClass='las la-envelope' error={error && error.email ? error.email: ''}/>
                 <TextField name='password' event={inputChangeAction} type='password' placeholder='Enter password' iconClass='las la-key' error={error && error.password ? error.password : ''}/>
                 <CheckBox name='remember_me' event={inputChangeAction} label='Remember me'/>
-                <Button type='submit' isBlock={true} color='primary'>Sign in</Button>
+                <Button disabled={isLoading} type='submit' isBlock={true} color='primary'>Sign in</Button>
             </form>
         </CardBody>
 

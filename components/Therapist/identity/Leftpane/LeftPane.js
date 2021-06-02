@@ -16,11 +16,9 @@ const LeftPane = () => {
             <div className='therapist-auth--main-leftPane'>
                 <div className='therapist-auth--main-leftPane-nav'>
                     <div className='therapist-auth--main-leftPane-nav-item-1'>
-                        <Image src={ !settings ? '/assets/logo/sense_logo.png' : settings.app_logo } alt='sense-therapy-logo' height='20' width='40' priority={true} quality='100'/>
-                        <h3>
-                            <span style={{ textTransform:'capitalize' }}>{ settings && settings.app_name }</span>
-                            <span>T</span>
-                            <span>herapy</span>
+                        {settings && <Image src={settings.app_logo } alt='sense-therapy-logo' height='55' width='55' priority={true} quality='100'/>}
+                        <h3 style={{ textTransform:'capitalize' }}>
+                            { settings && settings.app_name }
                         </h3>
                     </div>
                     <span className='therapist-auth--main-leftPane-nav-item-2'>Bringing mental health to all</span>

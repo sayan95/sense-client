@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { ToastProvider } from "react-toast-notifications";
 import Head from 'next/head';
 import {wrapper} from '../redux/store';
 
@@ -20,13 +21,22 @@ const Sense = ({ Component, pageProps, settings }) => {
       <Head>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <Component {...pageProps}/>
+      <ToastProvider>
+        <Component {...pageProps}/>
+      </ToastProvider>
   </Fragment>
 }
 
 
 //server side rendering
 Sense.getInitialProps = async ({Component, ctx}) => {
+
+  // test connection to the server
+
+
+  // test connection for the database
+  
+
   // load app settings data 
   let settings = await ctx.store.getState().app.settings;
   if(!settings){

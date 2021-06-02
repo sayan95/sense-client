@@ -27,7 +27,7 @@
                     color: $color-blue-500;
                     font-size: 25px;
                     letter-spacing: 2px;
-                    span:nth-child(2){font-size: 30px;}
+                    margin-top: 10px;
                 }
             }
             
@@ -83,10 +83,10 @@
             }
             &-item-1{
                 display: flex;
+                justify-content: center;
                 font-size: 25px;
                 letter-spacing: 2px;
                 color: $color-blue-500;
-                span:nth-child(2){ font-size: 30px;}
             }
             &-item-2{
                 text-align: center;
@@ -126,6 +126,7 @@
                 font-family: 'titillium-regular';
                 font-weight: 400;
                 font-size: 17px;
+                margin-bottom:10px;
             }
             &-timer{
                 margin-top: 15px;
@@ -138,9 +139,6 @@
                 margin-bottom: 10px;
                 font-family: oswald-regular;
                 letter-spacing: 1px;
-                a{
-                    color: $color-blue-500;
-                }
             }
         }
     }
