@@ -26,9 +26,10 @@
 @import './UI/select';
 @import './UI/progressbar';
 @import './UI/modal';
+@import './UI/dashboard';
 
 /* Base design settings*/
-*{
+*, ::before, ::after{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -36,9 +37,14 @@
 html, body{
     font-family: 'lato-regular';
     min-height: 100vh;
+    margin: 0;
 }
 a:link{
     text-decoration: none;
+}
+img{
+    max-width: 100%;
+    height: auto;
 }
 
 /* custom scrollbar for the entire application */

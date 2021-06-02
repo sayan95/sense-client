@@ -28,11 +28,12 @@ const Create = () => {
     // dependencies
     const dispatch = useDispatch();
     const router = useRouter();
+    const {email} = router.query;
 
     // local states
     const [openModal, setOpenModal] = useState(false);                 
     const [personalValid, setPersonalValid] = useState(false);    
-    const [professionalValid, setProfessionalValid] = useState(false);    
+    const [professionalValid, setProfessionalValid] = useState(false);
     const [form, setForm] = useState({
         personal:{
             username: '',
@@ -57,6 +58,7 @@ const Create = () => {
     const isLoading = useSelector(state => state.therapistAuth.loading);
     const isLoggedIn = useSelector(state => state.therapistAuth.isLoggedIn);
     const therapistServiceData  = useSelector(state => state.therapistService);
+    const authAlertType = useSelector(state => state.therapistAuth.alertType);
 
     // sideEffcets
     useEffect(() => {
@@ -69,14 +71,25 @@ const Create = () => {
         }else{
             dispatch(appRedux.actions.setPageLoading(false));
         }
-
         // indicate if form filling is complete
         const personalIsValid = Object.values(form.personal).every(x => x!='' );
         const professionalIsValid = Object.values(form.professional).every(x => x!='');
         setPersonalValid(personalIsValid);
         setProfessionalValid(professionalIsValid);
 
-    }, [form, isLoggedIn]);
+        // performs different action based on different auth alert type
+        if(authAlertType){
+            switch(authAlertType){
+                case 'profile-created':
+                    dispatch(appRedux.actions.setPageLoading(true));
+                    router.push('/therapist/profile/success');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }, [form, isLoggedIn, authAlertType]);
 
     // load therapistServiceData
     const loadTherapistServiceData = async () => {
@@ -132,7 +145,7 @@ const Create = () => {
     // create profile handler 
     const createProfile = async (e) => {
         e.preventDefault();
-        await dispatch(therpistAuthRedux.dispatchers.completeProfile(user.eamil, form));
+        await dispatch(therpistAuthRedux.dispatchers.completeProfile(email, form));
         setOpenModal(false);
     }
     // logout handler for auth user
@@ -195,8 +208,6 @@ const Create = () => {
                         </div>
                     </div>
 
-                    {/* Footer */}
-                    <BigFooter/>
                 </section>
 
                 {/* Modal */}
@@ -234,7 +245,7 @@ const Create = () => {
                         </div>
                     </ModalBody>
                     <ModalFooter>
-                        <div className=''>
+                        <div style={{ textAlign:'center' }}>
                             <Button type='button' event={createProfile} color='primary'>Submit</Button>
                         </div>
                     </ModalFooter>

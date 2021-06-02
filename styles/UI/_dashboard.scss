@@ -1,0 +1,127 @@
+// default values 
+
+// main container
+.dashboard-main-container{
+    min-height: 100vh;
+    height: 100vh;
+    background: $color-gray-50;
+    // header
+    &--header{
+        position: fixed;
+        top:0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 1px 5px $color-gray-200;
+        padding: 5px 10px;
+        &-container{
+            display: flex;
+            align-items: center;
+            height: 3.5rem;
+            justify-content: space-between;
+            &>div{
+                display: flex;
+                align-items: center;
+                // header image
+                .header-img{
+                    width: 50px;
+                    height: 50px;
+                    border-radius:50%;
+                }
+                .header-brand{
+                    font-family: 'oswald-regular';
+                    font-weight: 500;
+                    color: $color-gray-600;
+                    font-size: 26px;
+                    margin-bottom:10px;
+                    @include for-phone-only{
+                        display: none;
+                    }
+                }
+            }
+            //toggler
+            &-toggle{
+                color: $color-gray-700;
+                font-size: 22px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    // side navigation
+    &--nav{
+        position: fixed;
+        top:0;
+        left:0;
+        height: 100vh;
+        padding: 1rem 1rem 3rem;
+        background-color: #fff;
+        box-shadow: 1px 0 5px $color-gray-300;
+        z-index: 20;
+        transition: all .4s ease-in-out;
+        &-container{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: auto;
+            scrollbar-width: none;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+
+            // nav logo
+            .nav-logo{
+                display: flex;
+                align-items: center;
+                margin-bottom: 3rem!important;
+                color: $color-blue-500!important;
+                span{
+                    margin-bottom: 3px;
+                    margin-left: 5px;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+                i{
+                    font-size: 22px;
+                }
+            }
+            
+            // nav list 
+            .nav-list{
+                display: grid;
+                row-gap: 2.5rem;
+                .nav-item{
+                    display: grid;
+                    row-gap: 1.5rem;
+                    .nav-subtitle{
+                        color: $color-gray-400;
+                        letter-spacing: 2px;
+                        font-size: 13px;
+                        text-transform: uppercase;
+                    }
+                    // nav link
+                    .nav-link, .nav-link:link{
+                        display: flex;
+                        align-items: center;
+                        color: $color-gray-500!important;
+                        transition: all .2s ease-in;
+                        column-gap: .7rem;
+                        &:hover{
+                            color: $color-blue-500 !important;
+                        }
+                        .nav-icon{
+                            font-size: 16px;
+                        }
+                        .nav-name{
+                            font-size: 14px;
+                            font-weight: bold;
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+        }        
+    }
+}
+

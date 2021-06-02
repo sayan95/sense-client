@@ -43,7 +43,7 @@ const Identity = () => {
     });
 
     // states from store
-    //const user = useSelector(state => state.therapistAuth.user);
+    const user = useSelector(state => state.therapistAuth.user);
     const isLoading = useSelector(state => state.therapistAuth.loading);
     const isLoggedIn = useSelector(state => state.therapistAuth.isLoggedIn); 
     const pageMode = useSelector(state => state.app.pageMode);
@@ -84,7 +84,11 @@ const Identity = () => {
         //if userLogged in 
         if(isLoggedIn){
             dispatch(appRedux.actions.setPageLoading(true));
-            router.push('/therapist/profile/create');
+            if(!user.account_status.profile_created){
+                router.push(`/therapist/profile/create?email=${user.email}`);
+            }else{
+                router.push('/therapist/account/work-area');
+            }
         }else{
             dispatch(appRedux.actions.setPageLoading(false));
         }

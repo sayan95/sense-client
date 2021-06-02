@@ -1,20 +1,33 @@
 // dependency imports
-import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React, { Fragment, useEffect } from 'react';
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
+import * as appRedux from '../../../redux/application/index';
+import {withAuth} from '../../../components/Therapist/identity/HOC/withAuth';
 
 // component imports
 import TherapistLayout from '../../../layouts/TherapistLayout';
 import Button from '../../../components/UI/Button/Button';
 import BigFooter from '../../../components/UI/BigFooter/BigFooter';
+import Loader from '../../../components/UI/Loader/Loader';
 
 // profile create success page
 const Success = () => {
+    // dependencies
+    const dispatch = useDispatch();
+
     // states from store
+    const pageLoading = useSelector(state => state.app.pageLoading);
     const settings = useSelector(state => state.app.settings);
+    const success = useSelector(state => state.therapistAuth.success);
+
+    useEffect(() => {
+        dispatch(appRedux.actions.setPageLoading(false));
+    }, [])
 
     return (
-        <Fragment>
+        pageLoading ? <Loader/>
+        :<Fragment>
             <TherapistLayout pageTitle='proofile create success'>
                 <section className='therapist-profile-create-success--container'>
                     {/* main content */}
@@ -31,7 +44,7 @@ const Success = () => {
                             </div>
                             <div className='message-container'>
                                 <h3>Nice! You are done</h3>
-                                <p>Thanks for joining us. We will cactch you soon.</p>
+                                <p>{success ? success : 'Thanks for joining us. We will cacth you soon :)'}</p>
                                 <Button color='primary'> Let's have look to your profile</Button>
                             </div>
                         </div>
@@ -45,4 +58,4 @@ const Success = () => {
     )
 }
 
-export default Success;
+export default withAuth(Success);

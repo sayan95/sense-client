@@ -28,12 +28,14 @@ export const completeProfile = (email, form) => {
                     age_group:form.professional.age_group
                 }
             });
+            console.log(resp.data);
             fetch(therapistAuthActions.setTherapistUser(resp.data.user));
             fetch(therapistAuthActions.setAlertType(resp.data.alertType));
             fetch(therapistAuthActions.setAuthSuccess(resp.data.message));
             fetch(setResponseStatus(resp.status));
         }catch(e){
             if(e.response && e.response.data){
+                console.log(e.response.data)
                 fetch(therapistAuthActions.setAlertType('invalid-entity'));
                 fetch(therapistAuthActions.setAuthError(e.response.data.errors));
                 fetch(setResponseStatus(e.response.status));
