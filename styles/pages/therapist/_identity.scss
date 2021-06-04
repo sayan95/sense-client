@@ -24,10 +24,13 @@
             &-item-1{
                 display: flex;
                 h3{ 
+                    font-family: 'oswald-regular';
+                    font-weight: 600;
                     color: $color-blue-500;
                     font-size: 25px;
                     letter-spacing: 2px;
                     margin-top: 10px;
+                    text-transform: capitalize;
                 }
             }
             

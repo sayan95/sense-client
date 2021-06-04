@@ -8,10 +8,19 @@
 @mixin for-tablet-landscape-up {
 @media only screen and (max-width: 900px) { @content; }
 }
+@mixin for-tablet-landscape-down {
+@media only screen and (min-width: 900px) { @content; }
+}
 @mixin for-desktop-up {
 @media only screen and (max-width: 1200px) { @content; }
 }
+@mixin for-desktop-down {
+@media only screen and (min-width: 1200px) { @content; }
+}
 @mixin for-big-desktop-up {
+@media only screen and (min-width: 1800px) { @content; }
+}
+@mixin for-big-desktop-down {
 @media only screen and (max-width: 1800px) { @content; }
 }
 
