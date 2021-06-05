@@ -17,6 +17,7 @@ import Card from '../../../components/UI/Card/Card';
 import {withGuest} from '../../../components/Therapist/identity/HOC/WithGuest';
 import Progressbar from '../../../components/UI/Progressbar/Progressbar';
 import Loader from '../../../components/UI/Loader/Loader';
+import BigFooter from '../../../components/UI/BigFooter/BigFooter';
 
 // dynamic component loads
 const SignupComponent = dynamic(() => import('../../../components/Therapist/identity/Rightpane/SignupComponent/SignupComponent'))
@@ -87,7 +88,7 @@ const Identity = () => {
             if(!user.account_status.profile_created){
                 router.push(`/therapist/profile/create?email=${user.email}`);
             }else{
-                router.push('/therapist/account/work-area');
+                router.push('/therapist/account');
             }
         }else{
             dispatch(appRedux.actions.setPageLoading(false));
@@ -183,6 +184,7 @@ const Identity = () => {
                         </Card>
                     </Rightpane>
                 </section>
+                <BigFooter />
             </TherapistLayout>
         </Fragment>
     )

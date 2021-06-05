@@ -7,12 +7,13 @@
 // application states
 export const applicationState = {
     pageMode: '',
+    subject: '',
     pageLoading: false,
     settings: null,
     responseStatus: '',
     alertType: '',
     success: '',
-    error: ''
+    error: '',
 }
 
 // therapist service datas

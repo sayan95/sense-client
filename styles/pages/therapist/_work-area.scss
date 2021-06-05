@@ -1,0 +1,120 @@
+.therapist-work-area {
+  //border:1px solid red;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 10px;
+  grid-template-areas: "col1 col1 col1 col2";
+  .section-1,
+  .section-2 {
+    background-color: #fff;
+    box-shadow: 0 1px 6px $color-gray-300;
+    padding: 10px 1.2rem;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+  .section-1 {
+    grid-area: col1;
+    // page heading
+    .page-heading {
+      //border: 1px solid red;
+      margin-top: 10px;
+      padding: 10px;
+      h2 {
+        text-transform: capitalize;
+        border-bottom: 1px solid $color-gray-200;
+        padding-bottom: 5px;
+      }
+    }
+
+    .page-content {
+      padding: 10px;
+    }
+  }
+  .section-2 {
+    grid-area: col2;
+    //min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // collapse controller
+    .collapse-control-area {
+      padding: 5px 0 10px 0;
+      display: flex;
+      justify-content: space-between;
+      .collpase-control-icon{
+        height: 30px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all .4s;
+        &:hover{
+           background-color: $color-gray-100;
+           transform: rotateX(180deg);
+        }
+      }
+      @include for-tablet-landscape-down {
+        display: none;
+      }
+    }
+
+    // collapsible area
+    .collapsible {
+      overflow: hidden;
+      max-height: initial;
+      max-height: 0;
+      &.is-collapsed {
+        max-height: initial;
+      }
+      .content-area {
+        display: grid;
+        row-gap: 15px;
+        .account-brief-area,
+        .important-link-area {
+          background-color: $color-gray-50;
+          padding: 15px;
+          h3 {
+            color: $color-blue-500;
+            word-spacing: 3px;
+            font-family: "oswald-regular";
+            letter-spacing: 2px;
+            font-size: 18px;
+          }
+          hr {
+            border-top: 1px solid $color-gray-200;
+          }
+          table tr {
+            td {
+              padding: 5px;
+              font-size: 14px;
+            }
+            td:nth-child(1) {
+              color: $color-blue-500;
+              font-weight: 600;
+              font-family: "titillium-regular";
+            }
+            td:nth-child(2) {
+              color: $color-gray-500;
+              overflow-wrap: break-word;
+            }
+          }
+        }
+      }
+      .image-container {
+        text-align: center;
+        img {
+          height: 200px;
+          width: 200px;
+        }
+      }
+    }
+  }
+
+  @include for-tablet-landscape-up {
+    display: block;
+  }
+}

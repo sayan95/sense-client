@@ -15,6 +15,8 @@ const applicationReducer = (state = applicationState , action) => {
             return { ...state, ...action.payload.applicationReducer}
         case appTypes.SET_PAGE_MODE:
             return { ...state, pageMode: action.payload}
+        case appTypes.SET_PAGE_SUBJECT:
+            return { ...state, subject: action.payload}
         case appTypes.SET_PAGE_LOADING:
             return { ...state, pageLoading: action.payload}
         case appTypes.SET_APP_SETTINGS_INFO:

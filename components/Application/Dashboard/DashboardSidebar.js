@@ -1,9 +1,14 @@
 import React, { Fragment } from "react";
 import Link from 'next/link';
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 // Dashboard sidebar component
-const DashboardSidebar = ({ settings, sidebarItems }) => {
+const DashboardSidebar = ({ settings, sidebarItems, logoutAction }) => {
+  // state from store
+  const pageMode = useSelector(state => state.app.pageMode);
+
+  // jsx content
   return (
     <Fragment>
       <div className="dashboard-main-container--nav" id="sidebar">
@@ -28,14 +33,14 @@ const DashboardSidebar = ({ settings, sidebarItems }) => {
                     {sidebarItem.subItems.map((item, index) => {
                       return !item.isDropdown ? (
                         <Link key={index} href={item.href}>
-                          <a className="nav-link">
+                          <a className={`nav-link ${item.title.toLowerCase() === pageMode.toLowerCase()? 'active':''}`}>
                             <i className={`las ${item.icon} nav-icon`}></i>
                             <span className="nav-name">{item.title}</span>
                           </a>
                         </Link>
                       ) : (
                         <div key={index} className="nav-dropdown">
-                          <a href="#" className="nav-link">
+                          <a href="#" className={`nav-link ${item.title.toLowerCase() === pageMode.toLowerCase()? 'active':''}`}>
                             <i className={`las ${item.icon} nav-icon`}></i>
                             <span className="nav-name">{item.title}</span>
                             <i className="las la-angle-down nav-dropdown-icon"></i>
@@ -62,7 +67,7 @@ const DashboardSidebar = ({ settings, sidebarItems }) => {
             </div>
           </div>
 
-          <a href="#" className="nav-link-logout">
+          <a href="#" onClick={logoutAction} className="nav-link-logout">
             <i className="las la-sign-out-alt nav-icon"></i>
             <span className="nav-name">Logout</span>
           </a>
@@ -76,6 +81,7 @@ const DashboardSidebar = ({ settings, sidebarItems }) => {
 DashboardSidebar.propTypes = {
   settings: PropTypes.object.isRequired,
   sidebarItems: PropTypes.array.isRequired,
+  logoutAction: PropTypes.func.isRequired
 };
 
 export default DashboardSidebar;

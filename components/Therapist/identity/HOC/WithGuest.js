@@ -36,7 +36,7 @@ export const withGuest = (WrappedComponent) => {
         if(!user.account_status.profile_created){
           redirect(ctx, `/therapist/profile/create?email=${user.email}`);
         }else{
-            redirect(ctx, '/therapist/account/work-area');
+            redirect(ctx, '/therapist/account');
         }
     }
 

@@ -15,6 +15,10 @@
 }
 
 // active link
-.active{
-    color: $color-blue-500;
+.active,
+.active:link{
+  color: $color-blue-500!important;
+  i,span{
+    color: $color-blue-500!important;
+  }
 }

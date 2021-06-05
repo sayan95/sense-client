@@ -4,6 +4,7 @@
 
 // set state values
 export const SET_PAGE_MODE = 'SET_PAGE_MODE';
+export const SET_PAGE_SUBJECT = 'SET_PAGE_SUBJECT';
 export const SET_PAGE_LOADING = 'SET_PAGE_LOADING';
 export const SET_RESPOSNE_STATUS = 'SET_RESPOSNE_STATUS';
 export const SET_APP_SETTINGS_INFO = 'SET_APP_SETTINGS_INFO';

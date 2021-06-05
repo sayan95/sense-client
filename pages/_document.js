@@ -8,6 +8,7 @@ class MyDocument extends Document {
             <Html lang='en'>
             <Head>
                 <link rel="preload" as="image" href="/assets/logo/sense_logo_white_back.jpg"/>
+                <link rel="preload" as="image" href="/assets/svgs/profile_data.svg"/>
                 <link rel = "icon" href='/assets/logo/sense_logo_white_back.jpg'/>
                 
                 {/* Lato fonts preload */}
@@ -30,7 +31,7 @@ class MyDocument extends Document {
                 <link rel="preload" as="font" href="/fonts/titillium/titillium-web-v9-latin-700.woff2" type="font/woff2" crossOrigin="anonymous"></link>
                 <link rel="preload" as="font" href="/fonts/titillium/titillium-web-v9-latin-700.woff" type="font/woff" crossOrigin="anonymous"></link>
                 
-
+                
                 <link rel="stylesheet" href="/icons/line-awesome-master/dist/line-awesome/css/line-awesome.min.css"></link>
             </Head>
                 <body>
