@@ -1,5 +1,6 @@
 // dependency imports
 import React, { Fragment, useEffect } from 'react';
+//import dynamic from 'next/dynamic';
 import { useDispatch, useSelector } from 'react-redux';
 import * as appRedux from '../../../redux/application/index'; 
 import { useRouter } from 'next/router';
@@ -25,7 +26,6 @@ const index = () => {
     useEffect(() => {
         // sets the current active page
         dispatch(appRedux.actions.setPageMode('profile'));
-
         // select subjects for the page
         if(subject && allowedSubjects.includes(subject)){
             dispatch(appRedux.actions.setPageSubject(subject));   
@@ -34,9 +34,9 @@ const index = () => {
     // jsx content
     return (
         <Fragment>
-            <TherapistLayout pageTitle='profile'>
+            <TherapistLayout pageTitle={subject}>
                 <MainContent>
-                    {pageSubject === 'bio' ? <Bio/>:''}
+                    {pageSubject === 'bio' ? <Bio/> : ''}
                 </MainContent>
             </TherapistLayout>
         </Fragment>

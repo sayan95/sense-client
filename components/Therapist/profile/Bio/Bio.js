@@ -1,7 +1,8 @@
 // dependency imports
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import {appendCommas} from '../../../../lib/formatter';
+import PersonalDetails from './PersonalDetails';
+import ProfessionalDetails from './ProfessionalDetails';
 
 // therapist bio component
 const Bio = () => {
@@ -10,8 +11,22 @@ const Bio = () => {
     
     // local state
     const customisedUserDetails = {
-        education : user.profile.education ,
-        experties : user.profile.experties,
+        personal:{
+            first_name: user.profile.firstname,
+            last_name: user.profile.lastname, 
+            username: user.username,
+            email: user.email,
+            gender: user.profile.gender,
+            phone: user.profile.phone
+        },
+        professional: {
+            language_proficiency: user.profile.language_proficiency,
+            education : user.profile.education ,
+            experties : user.profile.experties,
+            preferred_age_groups: user.profile.age_group,
+            therapy_profile: user.profile.therapist_profile,
+            spectrum_specializations: user.profile.spectrum_specialization
+        }
     } 
 
     // jsx content
@@ -21,45 +36,13 @@ const Bio = () => {
             <div className='therapist-bio-container'>
                 <div className='therapist-bio-container-body'>
                     {/* perrsonal details */}
-                    <div className='personal-details'>
-                        {/* header */}
-                        <div className='personal-details-header'>
-                            <h4>Personal details</h4>
-                        </div>
-                        <div className='details-grid'>all personal details here</div>
-                    </div>
-
+                    <PersonalDetails personalDetails={customisedUserDetails.personal}/>
                     {/* professional details */}
-                    <div className='professional-details'>
-                        {/* header */}
-                        <div className='professional-details-header'>
-                            <h4>professional details</h4>
-                        </div>
-                        <div className='details-grid'>
-                            {Object.keys(customisedUserDetails).map(k=> {
-                                return (
-                                    <div className='details-grid-row'>
-                                        <div className='details-grid-column'>{k}</div>
-                                        <div className='details-grid-column'>:</div>
-                                        <div className='details-grid-column'>{appendCommas(customisedUserDetails[k])}</div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
+                    <ProfessionalDetails professionalDetails={customisedUserDetails.professional}/>
                 </div>
             </div>
         </Fragment>
     )
 }
 
-export default Bio
-
-{/* <div className='details-grid-row'>
-                                <div className='details-grid-column'>col-1</div>
-                                <div className='details-grid-column'>col-2</div>
-                            </div>
-                            <div className='details-grid-row'>
-                                <div className='details-grid-column'>col-3</div>
-                                <div className='details-grid-column'>col-4</div>
-                            </div> */}
+export default Bio;

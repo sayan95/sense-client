@@ -22,3 +22,7 @@
     color: $color-blue-500!important;
   }
 }
+
+// height utils
+.h-0{max-height: 0;}
+.h-full{max-height: 100rem!important;transition: all .4s}

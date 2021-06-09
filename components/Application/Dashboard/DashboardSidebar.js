@@ -14,14 +14,16 @@ const DashboardSidebar = ({ settings, sidebarItems, logoutAction }) => {
       <div className="dashboard-main-container--nav" id="sidebar">
         <nav className="dashboard-main-container--nav-container">
           <div>
-            <a href="#" className="nav-link nav-logo">
-              {settings && (
-                <>
-                  <img src={settings.app_logo} alt={settings.app_name} />
-                  <span className="nav-logo-name">{settings.app_name}</span>
-                </>
-              )}
-            </a>
+            <Link href="/">
+              <a className="nav-link nav-logo">
+                {settings && (
+                  <>
+                    <img src={settings.app_logo} alt={settings.app_name} />
+                    <span className="nav-logo-name">{settings.app_name}</span>
+                  </>
+                )}
+              </a>
+            </Link>
 
             {/* Nav list */}
             <div className="nav-list">
@@ -38,7 +40,8 @@ const DashboardSidebar = ({ settings, sidebarItems, logoutAction }) => {
                             <span className="nav-name">{item.title}</span>
                           </a>
                         </Link>
-                      ) : (
+                      ) : 
+                      (
                         <div key={index} className="nav-dropdown">
                           <a href="#" className={`nav-link ${item.title.toLowerCase() === pageMode.toLowerCase()? 'active':''}`}>
                             <i className={`las ${item.icon} nav-icon`}></i>
@@ -51,7 +54,8 @@ const DashboardSidebar = ({ settings, sidebarItems, logoutAction }) => {
                                 return (
                                   <Link key={index} href={di.href}>
                                     <a className="nav-dropdown-item">
-                                      {di.dropdownTitle}
+                                      <span><i className={`las ${di.dropdownIcon}`}></i></span>
+                                      <span>{di.dropdownTitle}</span>
                                     </a>
                                   </Link>
                                 );
@@ -66,11 +70,13 @@ const DashboardSidebar = ({ settings, sidebarItems, logoutAction }) => {
               })}
             </div>
           </div>
-
+          
+          {/* signout  link */}
           <a href="#" onClick={logoutAction} className="nav-link-logout">
             <i className="las la-sign-out-alt nav-icon"></i>
-            <span className="nav-name">Logout</span>
+            <span className="nav-name">Signout</span>
           </a>
+
         </nav>
       </div>
     </Fragment>
@@ -79,7 +85,7 @@ const DashboardSidebar = ({ settings, sidebarItems, logoutAction }) => {
 
 // props validation
 DashboardSidebar.propTypes = {
-  settings: PropTypes.object.isRequired,
+  settings: PropTypes.object,
   sidebarItems: PropTypes.array.isRequired,
   logoutAction: PropTypes.func.isRequired
 };

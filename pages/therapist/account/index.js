@@ -9,6 +9,7 @@ import {withTherapistDashboard} from '../../../components/Therapist/workArea/HOC
 import Loader from '../../../components/UI/Loader/Loader';
 import MainContent from '../../../components/Therapist/workArea/MainContent/MainContent';
 import TherapistLayout from '../../../layouts/TherapistLayout';
+import Home from '../../../components/Therapist/workArea/Home/Home';
 
 // therapist work area
 const index = () => {
@@ -27,7 +28,8 @@ const index = () => {
        :<Fragment>
            <TherapistLayout pageTitle='dashboard'>
                 <MainContent>
-                    This is home page
+                    {/* Therapist home component */}
+                    <Home/>
                 </MainContent>   
             </TherapistLayout>
         </Fragment>

@@ -1,5 +1,6 @@
 // dependency imports
 import React, { Fragment, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import * as appRedux from '../../../redux/application/index';
@@ -45,7 +46,11 @@ const Success = () => {
                             <div className='message-container'>
                                 <h3>Nice! You are done</h3>
                                 <p>{success ? success : 'Thanks for joining us. We will cacth you soon :)'}</p>
-                                <Button color='primary'> Let's have look to your profile</Button>
+                                <Link href='/therapist/profile?subject=bio'>
+                                    <a>
+                                    <Button color='primary'> Let's have look to your profile</Button>
+                                    </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

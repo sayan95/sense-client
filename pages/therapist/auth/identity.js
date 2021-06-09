@@ -17,7 +17,6 @@ import Card from '../../../components/UI/Card/Card';
 import {withGuest} from '../../../components/Therapist/identity/HOC/WithGuest';
 import Progressbar from '../../../components/UI/Progressbar/Progressbar';
 import Loader from '../../../components/UI/Loader/Loader';
-import BigFooter from '../../../components/UI/BigFooter/BigFooter';
 
 // dynamic component loads
 const SignupComponent = dynamic(() => import('../../../components/Therapist/identity/Rightpane/SignupComponent/SignupComponent'))
@@ -31,7 +30,6 @@ const Identity = () => {
     const router = useRouter();
     const { page } = router.query;
     const dispatch = useDispatch();
-    const { addToast } = useToasts();
 
     // local states
     const allowedPageModes = ['sign-in', 'sign-up', 'activate-account'];        // page mode white list
@@ -84,11 +82,10 @@ const Identity = () => {
         }
         //if userLogged in 
         if(isLoggedIn){
-            dispatch(appRedux.actions.setPageLoading(true));
             if(!user.account_status.profile_created){
                 router.push(`/therapist/profile/create?email=${user.email}`);
             }else{
-                router.push('/therapist/account');
+                router.push('/therapist/profile?subject=bio');
             }
         }else{
             dispatch(appRedux.actions.setPageLoading(false));
@@ -133,6 +130,7 @@ const Identity = () => {
     // initiate login process
     const loginActionHandler = async (e) => { 
         e.preventDefault(); 
+        dispatch(appRedux.actions.setPageLoading(true));
         await dispatch(therapistAuthRedux.dispatchers.loginTherapist(authForm));
     }
 
@@ -184,7 +182,6 @@ const Identity = () => {
                         </Card>
                     </Rightpane>
                 </section>
-                <BigFooter />
             </TherapistLayout>
         </Fragment>
     )

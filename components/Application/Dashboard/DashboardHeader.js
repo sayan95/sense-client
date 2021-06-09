@@ -1,22 +1,33 @@
 import React, { Fragment } from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 // Dashboard header component
 const DashboardHeader = ({settings}) => {
+    // state from store
+    const user = useSelector(state => state.therapistAuth.user);
+
+    // jsx content
     return (
         <Fragment>
             <header className="dashboard-main-container--header">
                 <div className="dashboard-main-container--header-container">
                     {settings && (
                         <>
-                            <img
-                                src='/assets/svgs/avatar.svg'
-                                alt={settings.app_name}
-                                className="header-img"
-                            />
-                            <a herf="#" className="header-brand">
-                                {settings.app_name}
-                            </a>
+                            <div className='header-user'>
+                                <span>{user.email}</span>
+                                <img
+                                    src='/assets/svgs/avatar-male.svg'
+                                    alt={settings.app_name}
+                                    className="header-img"
+                                />
+                            </div>
+                            <Link href="/">
+                                <a className="header-brand">
+                                    {settings.app_name}
+                                </a>
+                            </Link>
                         </>
                     )}
                     <div className="dashboard-main-container--header-container-toggle">
@@ -30,7 +41,7 @@ const DashboardHeader = ({settings}) => {
 
 // props validation
 DashboardHeader.propTypes = {
-    settings: PropTypes.object.isRequired
+    settings: PropTypes.object
 }
 
 export default DashboardHeader

@@ -1,17 +1,16 @@
 /* import animations */
 @import './animation/animate.css';
 
-// import fonts 
+/* fonts */ 
 @import './fonts/fonts';
+
+/* mixins */
+@import './mixins/mixin';
 
 /* import shared utils */
 @import './shared/colors';
 @import './shared/text';
 @import './shared/util';
-
-/* import mixins*/
-@import './mixins/mixin';
-
 
 /* import ui componnets */
 @import './UI/navbar';
@@ -52,27 +51,32 @@ img{
 ::-webkit-scrollbar {
     width: 5px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
     background: rgba(255,255,255, 0.3);
 }
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgb(167, 166, 166);
     border-radius: 10px;
     transition: all .5s;
 }
-
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
+/* import layouts */
+@import './layouts/therapist-layout';
+@import './layouts/generic-dashboard-layout';
+
 /* Import pages */
 @import './pages/therapist/identity';
 @import './pages/therapist/profile-create';
 @import './pages/therapist/profile-create-success';
-@import './pages/therapist/work-area';
 @import './pages/therapist/bio';
+@import './pages/therapist/home';
+@import './pages/app/landing';
+
+/* Import components */
+@import './components/no-content';

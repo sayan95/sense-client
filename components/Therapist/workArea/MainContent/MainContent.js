@@ -1,10 +1,15 @@
-
 // dependency imports
 import React, { Fragment } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import {splitStringByChar} from '../../../../lib/formatter';
 
 // therapist dashboard work area
 const MainContent = ({children}) => {
+    // dependency
+    const router = useRouter();
+    const {subject} = router.query;
+
     // states from store
     const user = useSelector(state => state.therapistAuth.user);
     const pageMode = useSelector(state => state.app.pageMode);
@@ -21,7 +26,7 @@ const MainContent = ({children}) => {
                 {/* Dynamic content area */}
                 <div className='section-1'>
                     <div className='page-heading'>
-                        <h2>{pageMode}</h2>
+                        <h2>{subject ? splitStringByChar(subject, '-') : pageMode}</h2>
                     </div>
                     <div className='page-content animate__animated animate__zoomIn animate__faster'>
                         {children}
@@ -62,7 +67,7 @@ const MainContent = ({children}) => {
                             </div>
                             {/* Important links */}
                             <div className='important-link-area'>
-                                <h3>Important links</h3>
+                                <h3>Quick links</h3>
                                 <hr/>
                                 <div className='details'>
                                     <table>

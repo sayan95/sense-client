@@ -15,7 +15,6 @@ import Navbar from '../../../components/UI/Navbar/Navbar';
 import PersonalDetails  from '../../../components/Therapist/profile/PersonalDetails/PersonalDetails';
 import Button from '../../../components/UI/Button/Button';
 import {ModalFooter, ModalBody} from '../../../components/UI/Modal/Modal';
-import BigFooter from '../../../components/UI/BigFooter/BigFooter';
 
 // dynamic component imports
 const Loader = dynamic(() => import('../../../components/UI/Loader/Loader'));
@@ -53,7 +52,6 @@ const Create = () => {
     });
     
     // state from store
-    const user = useSelector(state => state.therapistAuth.user);
     const pageLoading = useSelector(state => state.app.pageLoading);
     const isLoading = useSelector(state => state.therapistAuth.loading);
     const isLoggedIn = useSelector(state => state.therapistAuth.isLoggedIn);

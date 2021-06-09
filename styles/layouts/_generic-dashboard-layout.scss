@@ -17,6 +17,7 @@
 
   .section-1 {
     grid-area: col1;
+    max-height: 560px;
     // page heading
     .page-heading {
       //border: 1px solid red;
@@ -31,6 +32,8 @@
 
     .page-content {
       padding: 10px;
+      max-height: 460px;
+      overflow: scroll;
     }
   }
   .section-2 {
@@ -44,17 +47,17 @@
       padding: 5px 0 10px 0;
       display: flex;
       justify-content: space-between;
-      .collpase-control-icon{
+      .collpase-control-icon {
         height: 30px;
         width: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        transition: all .4s;
-        &:hover{
-           background-color: $color-gray-100;
-           transform: rotateX(180deg);
+        transition: all 0.4s;
+        &:hover {
+          background-color: $color-gray-100;
+          transform: rotateX(180deg);
         }
       }
       @include for-tablet-landscape-down {

@@ -9,6 +9,9 @@ class MyDocument extends Document {
             <Head>
                 <link rel="preload" as="image" href="/assets/logo/sense_logo_white_back.jpg"/>
                 <link rel="preload" as="image" href="/assets/svgs/profile_data.svg"/>
+                <link rel="preload" as="image" href="/assets/images/sense-landing-bg-1.png"/>
+                <link rel="preload" as="image" href="/assets/svgs/happy-place.svg"/>
+                <link rel="preload" as="image" href="/assets/images/happy-place.png"/>
                 <link rel = "icon" href='/assets/logo/sense_logo_white_back.jpg'/>
                 
                 {/* Lato fonts preload */}

@@ -1,0 +1,25 @@
+// no content container
+.no-content{
+    // header
+    &-header{
+        padding: 5px 0 5px 10px;
+        h1{
+            font-family: 'oswald-regular';
+            text-align: center;
+            letter-spacing: 1px;
+            color: $color-blue-600;
+            font-size: 30px;
+        }
+        p{ 
+            text-align: center; 
+            letter-spacing: 2px;
+            font-size: 20px;
+            color: $color-gray-600;
+        }
+    }
+    // image container
+    &-image-container{
+        position: relative;
+        padding: 35px;
+    }
+}

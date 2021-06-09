@@ -1,27 +1,38 @@
 .navbar {
   position: sticky;
   width: 100%;
-  padding: 5px 25px 5px 25px;
-  background: $color-blue-500;
+  top:0;
+  padding: 5px 25px 5px 70px;
   z-index: 1000;
-  box-shadow: 0px 1px 3px $color-gray-300;
+  background-color: $color-gray-50;
   transition: box-shadow .5s ease-in-out;
+  @include for-tablet-landscape-up{
+    padding-left: 5px;
+    background-color: #fff;
+  }
+
+  // collapsible
   &-collapsible {
+    position: relative;
     display: flex;
+    flex-direction: row;
+    @include for-tablet-landscape-up{
+      flex-direction: column;
+    }
+    // navbar brand
     .navbar-brand {
       display: inline-flex;
       align-items: center;
       width: fit-content;
-      color: #fff;
-      padding: 0 10px 0 10px;
       a {
-        font-size: 22px;
-        text-transform: capitalize;
-        color: #fff;
+        font-size: 32px;
+        color: $color-blue-600;
         font-family: "Oswald-500";
         letter-spacing: 1px;
+        margin-bottom: 15px;
       }
     }
+    // navbar items
     .navbar-nav {
       margin-left: auto;
       display: inline-flex;
@@ -29,54 +40,60 @@
       justify-content: center;
       list-style: none;
       flex-wrap: wrap;
-
+      transition: all .4s;
+      @include for-tablet-landscape-up{
+        display: block;
+        margin-left: 10px;
+        justify-content: start;
+        max-height: 0;
+        overflow: hidden;
+        transition: all .3s;
+      }
       .nav-item {
         margin: 10px;
         .nav-link {
-          color: #fff;
+          font-size: 15px;
+          color: $color-gray-500!important;
+          font-family: "titillium-regular";
           font-weight: 600;
-          letter-spacing: 1px;
-          padding: 10px;
-          transition: background-color 0.1s ease-in;
-          &:hover {
-            background-color: $color-blue-400;
-            color: #fff
+          letter-spacing: 2px;
+          transition: all 0.1s ease-in;
+          &:hover{
+            color: $color-blue-500!important;
           }
         }
       }
     }
+    // nav collapse control
+    .collapse-btn{
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 20px;
+      font-size: 18px;
+      color: $color-gray-400;
+      @include for-tablet-landscape-up{
+        display: block;
+      }
+    }   
   }
 }
 
+// navbar appearance on scroll
 .floatingNav {
   position: sticky;
   width: 100%;
   border-radius: 2px;
-  box-shadow: 0px 1px 10px $color-gray-500;
+  box-shadow: 0px 1px 10px $color-gray-200;
   top:0;
-  background: $color-blue-600;
-  transition: all .3s ease-out;
+  background: #fff;
+  transition: all .6s;
   .navbar-brand {
-    div.brand-image{
-        border:1px solid red;
-    }
     a{
-      font-size: 25px;
-      text-transform: capitalize;
-      color: #fff;
+      font-size: 32px;
+      color: $color-blue-600;
       font-family: "Oswald-500";
       letter-spacing: 1px;
-    }
-  }
-
-  .navbar-nav{
-    .nav-item{
-      .nav-link {
-        color: #fff;
-        &:hover{
-          color: $color-gray-500;
-        }
-      }
     }
   }
 }
