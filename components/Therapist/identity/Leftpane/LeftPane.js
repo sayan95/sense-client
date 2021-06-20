@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import Link from 'next/link';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -18,7 +19,9 @@ const LeftPane = () => {
                     <div className='therapist-auth--main-leftPane-nav-item-1'>
                         {settings && <Image src={settings.app_logo } alt='sense-therapy-logo' height='55' width='55' priority={true} quality='100'/>}
                         <h3 style={{ textTransform:'capitalize' }}>
-                            { settings && settings.app_name }
+                            <Link href="/">
+                                <a>{ settings && settings.app_name }</a>
+                            </Link>
                         </h3>
                     </div>
                     <span className='therapist-auth--main-leftPane-nav-item-2'>Bringing mental health to all</span>

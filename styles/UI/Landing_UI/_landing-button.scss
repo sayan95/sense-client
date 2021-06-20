@@ -1,0 +1,35 @@
+// Sens elanding page button element
+.landing-button-container{
+    position: relative;
+    
+    // button 
+    .landing-button,
+    .landing-button-outlined{
+        padding: 13px 30px;
+        outline:0;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all .4s;
+        letter-spacing: 1px;
+        &:hover{
+            transform: translateY(-4%);
+            box-shadow: 0 1px 8px $color-blue-300;
+            background-color: $color-blue-600;
+            color: #fff;
+        }
+    }
+    // landing page button solid
+    .landing-button{
+        background-color: $color-blue-600;
+        border: 0;
+        color: #fff;
+    }
+    // landing page button outlined
+    .landing-button-outlined{
+        background-color: #fff;
+        border: 1px solid $color-blue-600;
+        color: $color-blue-600;
+    }
+}

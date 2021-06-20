@@ -5,7 +5,7 @@
   padding: 5px 25px 5px 70px;
   z-index: 1000;
   background-color: $color-gray-50;
-  transition: box-shadow .5s ease-in-out;
+  transition: box-shadow .5s;
   @include for-tablet-landscape-up{
     padding-left: 5px;
     background-color: #fff;
@@ -16,8 +16,9 @@
     position: relative;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     @include for-tablet-landscape-up{
-      flex-direction: column;
+      display: block;
     }
     // navbar brand
     .navbar-brand {
@@ -25,16 +26,18 @@
       align-items: center;
       width: fit-content;
       a {
-        font-size: 32px;
+        font-size: 30px;
         color: $color-blue-600;
         font-family: "Oswald-500";
         letter-spacing: 1px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
       }
     }
-    // navbar items
-    .navbar-nav {
-      margin-left: auto;
+
+    // center & right aligned nav items
+    .navbar-nav-right,
+    .navbar-nav-center {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -51,6 +54,7 @@
       }
       .nav-item {
         margin: 10px;
+        position: relative;
         .nav-link {
           font-size: 15px;
           color: $color-gray-500!important;
@@ -58,8 +62,19 @@
           font-weight: 600;
           letter-spacing: 2px;
           transition: all 0.1s ease-in;
-          &:hover{
-            color: $color-blue-500!important;
+          &:hover,&:focus{
+            color: $color-blue-700!important;
+            &::after{width: 100%;}
+          }
+          &::after{
+            content: '';
+            position: absolute;
+            left:0;
+            bottom: -21px;
+            width: 0;
+            height: 3px;
+            transition: .2s;
+            background-color: $color-blue-700;
           }
         }
       }
@@ -75,7 +90,81 @@
       @include for-tablet-landscape-up{
         display: block;
       }
-    }   
+    }
+    // nav dropdowns
+    .nav-dropdown{
+      position: relative;
+      margin-left: auto;
+      transition: all .4s;
+      margin-left: 10px;
+    
+      // dropdown action
+      &-action{
+        cursor: pointer;
+        display: inline-block;
+        font-size: 15px;
+        color: $color-gray-500!important;
+        font-family: "titillium-regular";
+        font-weight: 600;
+        letter-spacing: 2px;
+        transition: all 0.1s ease-in;
+        // action dropdown icon
+        .dropdown-drop-arrow{margin-left: 8px; transition: all .4s}
+        // dropdown menu
+        .nav-dropdown-menu {
+          position: absolute;
+          place-items: center;
+          list-style: none;
+          top: 25px;
+          left: 0;
+          width: 100%;
+          max-height: 0;
+          overflow: hidden;
+          background-color: #fff;
+          box-shadow: 0 1px 10px $color-gray-200;
+          transition: all .2s ;
+          @include for-tablet-landscape-up{
+            position: relative;
+            display: block;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            padding: 0 0 0 0px;
+            box-shadow: none;
+          }
+          // dropdown menu items
+          &-item{
+            width: 100%;
+            text-align: center;
+            padding: 8px 10px;
+            @include for-tablet-landscape-up{
+              width: initial;
+              text-align: left;
+              padding: 8px 10px;
+            }
+            // item links
+            &-link{
+              font-family: "quicksand-regular";
+              color: $color-gray-400;
+            }
+            &:hover{
+              background-color: $color-blue-500;
+              a{color: #fff;}
+            }
+          }
+        }
+        &:hover{
+          color: $color-blue-700!important;
+          .dropdown-drop-arrow{
+            transform: rotate(180deg);
+          }
+          .nav-dropdown-menu{
+            max-height: 100rem;
+          }
+        }
+
+      }
+    }
+    
   }
 }
 
@@ -84,13 +173,13 @@
   position: sticky;
   width: 100%;
   border-radius: 2px;
-  box-shadow: 0px 1px 10px $color-gray-200;
+  box-shadow: 0px 1px 5px $color-gray-100, 0px 1px 8px $color-gray-50;
   top:0;
   background: #fff;
   transition: all .6s;
   .navbar-brand {
     a{
-      font-size: 32px;
+      font-size: 30px;
       color: $color-blue-600;
       font-family: "Oswald-500";
       letter-spacing: 1px;

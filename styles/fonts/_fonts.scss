@@ -1,21 +1,4 @@
-// Lato-regular - latin 
-@font-face {
-    font-family: 'lato-regular';
-    font-style: normal;
-    font-weight: 500;
-    //font-display: optional;
-    src: url('/fonts/lato/lato-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-        url('/fonts/lato/lato-v17-latin-regular.woff') format('woff'),    /* Modern Browsers */
-}
-// Lato-700 - latin
-@font-face {
-    font-family: 'lato-700';
-    font-style: normal;
-    font-weight: 700;
-    ////font-display: optional;
-    src: url('/fonts/lato/lato-v17-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
-        url('/fonts/lato/lato-v17-latin-700.woff') format('woff'),    /* Modern Browsers */
-}
+
 // oswald -regular
 @font-face {
     font-family: 'oswald-regular';
@@ -44,7 +27,6 @@
     src: url('/fonts/titillium/titillium-web-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
         url('/fonts/titillium/titillium-web-v9-latin-regular.woff') format('woff'),    /* Modern Browsers */
 }
-
 // titillium -600
 @font-face {
     font-family: 'titillium-600';
@@ -65,10 +47,59 @@
         url('/fonts/titillium/titillium-web-v9-latin-700.woff') format('woff'),    /* Modern Browsers */
 }
 
-/* line awsome fonts */
+// mulish regular
 @font-face {
-    font-family: 'la-solid-500';
+    font-family: 'mulish-regular';
+    font-style: normal;
+    font-weight: 400;
     //font-display: optional;
-    src: url('/icons/line-awesome-master/dist/line-awesome/fonts/la-solid-900.woff')
-         url('/icons/line-awesome-master/dist/line-awesome/fonts/la-solid-900.woff2');
+    src: url('/fonts/mulish/mulish-v3-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/mulish/mulish-v3-latin-regular.woff') format('woff'),    /* Modern Browsers */
+}
+// mulish 500
+@font-face {
+    font-family: 'mulish-500';
+    font-style: normal;
+    font-weight: 500;
+    //font-display: optional;
+    src: url('/fonts/mulish/mulish-v3-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/mulish/mulish-v3-latin-500.woff') format('woff'),    /* Modern Browsers */
+}
+// mulish 600
+@font-face {
+    font-family: 'mulish-600';
+    font-style: normal;
+    font-weight: 600;
+    //font-display: optional;
+    src: url('/fonts/mulish/mulish-v3-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/mulish/mulish-v3-latin-600.woff') format('woff'),    /* Modern Browsers */
+}
+// mulish 700
+@font-face {
+    font-family: 'mulish-700';
+    font-style: normal;
+    font-weight: 700;
+    //font-display: optional;
+    src: url('/fonts/mulish/mulish-v3-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/mulish/mulish-v3-latin-700.woff') format('woff'),    /* Modern Browsers */
+}
+
+
+// quicksand regular
+@font-face {
+    font-family: 'quicksand-regular';
+    font-style: normal;
+    font-weight: 400;
+    //font-display: optional;
+    src: url('/fonts/quicksand/quicksand-v22-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/quicksand/quicksand-v22-latin-regular.woff') format('woff'),    /* Modern Browsers */
+}
+// quicksand 500
+@font-face {
+    font-family: 'quicksand-500';
+    font-style: normal;
+    font-weight: 500;
+    //font-display: optional;
+    src: url('/fonts/quicksand/quicksand-v22-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/quicksand/quicksand-v22-latin-500.woff') format('woff'),    /* Modern Browsers */
 }

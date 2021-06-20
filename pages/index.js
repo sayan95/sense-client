@@ -1,68 +1,59 @@
-import React, { Fragment } from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
+// @ts-nocheck
+import React, { Fragment, useEffect } from "react";
 
 // component imports
-import SenseNavbar from '../components/UI/Navbar/Navbar'
-import BigFooter from '../components/UI/BigFooter/BigFooter';
+import SenseMainLayout from "@layouts/SenseMainLayout";
+import Showcase from "@components/Application/Landing/Showcase/Showcase";
+import Services from "@components/Application/Landing/Services/Services";
+import CreativeFeature1 from "@components/Application/Landing/CreativeFeature/CreativeFeature1";
+import LatestNews from "@components/Application/Landing/LatestNews/LatestNews";
+import OurTeam from "@components/Application/Landing/OurTeam/OurTeam";
+import ContactUs from "@components/Application/Landing/ContactUs/ContactUs";
 
 // Sense landing page
 const Home = () => {
   // local states
-  const navItems = [
-    {label: 'Login', href: '/therapist/auth/identity?page=sign-in'},
-    {label: 'Signup', href: '#'}
-  ]
+  const navItemsCenter = [
+    {label :"About us", isDropdown:false, href:'#'},
+    {label :"Services", isDropdown:false, href:'#services'},
+    {label :"Features", isDropdown:false, href:'#creativeFeature'},
+    {label :"Blogs", isDropdown:false, href:'#blogs'},
+    {label :"Teams", isDropdown:false, href:'#teams'},
+    {label :"Contact", isDropdown:false, href:'#contact'},
+  ];
+  const navItemsRight = [
+    {label :"Therapist?", isDropdown:true, href:'#', menuItems:[
+      {menuLabel: 'Sign in', menuLink: '/therapist/auth/identity?page=sign-in'},
+      {menuLabel: 'Join us', menuLink: '/therapist/auth/identity?page=sign-up'},
+    ]}
+  ];
+
   // jsx contents
   return (
     <Fragment>
-      <Head><title>Sense</title></Head>
-
-      {/* main section */}
-      <section className='sense-main'>
-        {/* Navbar */}
-        <SenseNavbar navItems={navItems} page='sense-landing'/>
-        
+      {/* Main sense landing page layout */}
+      <SenseMainLayout pageTitle="Sense" navItemsCenter={navItemsCenter} navItemsRight={navItemsRight}>
         {/* Landing showcase */}
-        <div className='sense-main--showcase'>
-          {/* Left sub section */}
-          <div className='sense-main--showcase-left'>
-            {/* Big heading */}
-            <div className='heading-container'>
-              <h3 className='sub-heading'>sense</h3>
-              <h1 className='big-heading'>
-                <span>Bringing Mental</span>
-                <span>Health To All</span>
-              </h1>
-              <p className='small-line'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            </div>
+        <Showcase/>
+         
+        {/* Services / features */}
+        <Services id='services'/>
 
-            {/* News letter */}
-            <div className='news-letter'>
-              <h6 className='news-letter-heading'>Subscribe to be the first to know about our launch...</h6>
-              <div className='news-letter-input-box'>
-                <input type='text' name='email' placeholder='Email'/>
-                <button className='sense-landing-btn'>Subscribe</button>
-              </div>
-            </div> 
-          </div>
+        {/* Creative feature section 1 */}
+        <CreativeFeature1 id='creativeFeature'/>
+        
+        {/* Blog carousel */}
+        <LatestNews id='blogs'/>
 
+        {/* Our team */}
+        <OurTeam id='teams'/>
 
-          {/* Right sub section */}
-          <div className='sense-main--showcase-right'>
-            <div className='image-container'>
-              <img src='/assets/svgs/happy-place.svg' alt='' />
-            </div>
-          </div>
-        </div>
-      
-        {/* services / features */}
-        <div className='sense-main--service'>
-          
-        </div>
-      </section>
+        {/* Contact */}
+        <ContactUs id='contact'/>
+
+      </SenseMainLayout>
     </Fragment>
-  )
-}
+  );
+};
 
 export default Home;

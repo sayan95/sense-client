@@ -12,7 +12,7 @@ export const fetchAuthTherapist = (ctx=null) => {
     return async fetch => {
         fetch(therapistAuth.setAuthLoading(true));
         try{
-            const resp = await axios('/therapist/auth-api/profile', {
+            const resp = await axios('/therapist/profile-api/profile', {
                 method: 'GET',
                 headers : ctx && ctx.req.headers.cookie ? 
                     {cookie : ctx.req.headers.cookie} : 

@@ -26,6 +26,12 @@
 @import './UI/progressbar';
 @import './UI/modal';
 @import './UI/dashboard';
+@import './UI/Landing_UI/landing-card';
+@import './UI/Landing_UI/landing-button';
+@import './UI/Landing_UI/landing-slider';
+@import './UI/Landing_UI/landing-news-card';
+@import './UI/Landing_UI/landing-team-card';
+
 
 /* Base design settings*/
 *, ::before, ::after{
@@ -34,9 +40,11 @@
     box-sizing: border-box;
 }
 html, body{
-    font-family: 'lato-regular';
+    font-family: 'mulish-regular';
     min-height: 100vh;
     margin: 0;
+    scroll-behavior: smooth;
+    scroll-padding: 60px;
 }
 a:link{
     text-decoration: none;
@@ -68,7 +76,8 @@ img{
 
 /* import layouts */
 @import './layouts/therapist-layout';
-@import './layouts/generic-dashboard-layout';
+@import './layouts/therapist-dashboard-layout';
+@import './layouts/sense-main-layout';
 
 /* Import pages */
 @import './pages/therapist/identity';

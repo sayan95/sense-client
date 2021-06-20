@@ -1,0 +1,64 @@
+// sense landing page teams card
+// main card layout
+.landing-team-card{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 330px calc(100% - 330px);
+    grid-template-areas: "header" "body";
+    border-radius: 5px;
+    overflow: hidden;
+    row-gap: 10px;
+    //card header
+    &-header{
+        grid-area: header;
+        cursor: pointer;
+        overflow: hidden!important;
+        img{
+            object-fit: fill;
+            height: 100%;
+            width: 100%;
+            transition: all .4s ;
+            border-radius: 5px;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+    // card footer
+    &-body{
+        grid-area: body;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 3px 3px 10px $color-gray-300;
+        // member tile and role
+        .member-title{
+            font-family: "quicksand-regular";
+            padding: 10px 0 0 20px;
+            .main-heading{
+                font-size: 18px;
+                color: $color-gray-700;
+            }
+            .sub-heading{
+                font-size: 14px;
+                color: $color-gray-400;
+            }
+        }
+        // memeber short description
+        .brief-description{
+            font-family: "quicksand-regular";
+            padding: 10px 0 0 20px;
+            color: $color-gray-500;
+            font-size: 17px;
+        }
+
+        // social links
+        .social-links{
+            padding: 20px 0 0 20px;
+            display: flex;
+            font-size: 20px;
+            color: $color-gray-400;
+            column-gap: 5px;
+            i{ cursor: pointer;}
+        }
+    }
+}

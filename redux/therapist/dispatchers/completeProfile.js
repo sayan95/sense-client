@@ -12,7 +12,7 @@ export const completeProfile = (email, form) => {
     return async fetch => {
         fetch(therapistAuthActions.setAuthLoading(true));
         try{
-            const resp = await axios(`/therapist/auth-api/create/profile/${email}`, {
+            const resp = await axios(`/therapist/profile-api/create/profile/${email}`, {
                 method: 'POST',
                 data : {
                     username:form.personal.username,

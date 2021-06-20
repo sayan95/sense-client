@@ -70,7 +70,8 @@
     height: 100vh;
     padding: 1rem 1rem 3rem;
     background-color: #fff;
-    box-shadow: 1px 0 5px $color-gray-300;
+    //box-shadow: 1px 0 2px $color-gray-300;
+    border-right: 1px solid $color-gray-200;
     z-index: 20;
     transition: all 0.4s ease-in-out;
     @include for-tablet-landscape-down {
@@ -80,6 +81,7 @@
     }
     &:hover {
       width: 230px;
+      box-shadow: 1px 0 7px $color-gray-300;
     }
     &:hover .nav-logo-name,
     &:hover .nav-list .nav-item .nav-subtitle,

@@ -1,0 +1,70 @@
+// landing page news card component
+.sense-news-card{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 230px auto 80px;
+    grid-template-areas: "header" "body" "footer";
+    
+    row-gap: 10px;
+    // header
+    &--header{
+        position: relative;
+        grid-area: header;
+        box-shadow:  0 0 10px $color-gray-300;
+        border-radius: 5px;
+        overflow: hidden;
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            opacity: .7;
+        }
+    }
+
+    // body
+    &--body{
+        padding: 0 10px;
+        .basic-info-panel{
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+            margin-top: 10px;
+            span{
+                font-family: "quicksand-regular";
+                font-size: 17px;
+                color: $color-gray-500;
+                i{ font-size: 22px; }
+            }
+        }
+        .news-description{
+            margin-top: 15px;
+            padding: 0 0 20px 0;
+            p{
+                color: $color-gray-400;
+                line-height: 25px;
+                text-justify: newspaper;
+            }
+        }
+    }
+
+    // footer
+    &--footer{
+        padding: 0 10px;
+        .news-details-link{
+            h5{
+                font-family: 'quicksand-regular';
+                cursor: pointer;
+                span, i{
+                    color: rgba($color: $color-blue-700, $alpha: .7);
+                }
+                span{font-size: 17px;}
+                i{
+                    font-size: 22px;
+                    transform: scaleX(1.9) translateX(50%) translateY(15%)
+                }
+            }
+        }
+    }
+}

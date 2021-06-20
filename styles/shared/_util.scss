@@ -26,3 +26,9 @@
 // height utils
 .h-0{max-height: 0;}
 .h-full{max-height: 100rem!important;transition: all .4s}
+
+// rotate paper plane icon to -30deg
+.las.la-paper-plane{
+  transform: rotate(-45deg);
+  margin-bottom: 7px;
+}

@@ -28,6 +28,7 @@
             transition: all .5s;
             z-index: 10;
             color: $color-gray-600;
+            font-family: "quicksand-regular";
             &.error, &.error:focus{
                 border: 1px solid $color-red-400;
             }

@@ -82,6 +82,7 @@ const Identity = () => {
         }
         //if userLogged in 
         if(isLoggedIn){
+            dispatch(appRedux.actions.setPageLoading(true));
             if(!user.account_status.profile_created){
                 router.push(`/therapist/profile/create?email=${user.email}`);
             }else{
@@ -130,7 +131,6 @@ const Identity = () => {
     // initiate login process
     const loginActionHandler = async (e) => { 
         e.preventDefault(); 
-        dispatch(appRedux.actions.setPageLoading(true));
         await dispatch(therapistAuthRedux.dispatchers.loginTherapist(authForm));
     }
 

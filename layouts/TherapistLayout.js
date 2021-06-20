@@ -8,10 +8,15 @@ import Head from 'next/head';
 const TherapistLayout = ({children, pageTitle}) => {
     return (
        <Fragment>
+           {/* document  head */}
            <Head>
                <title>Sense - {pageTitle}</title>
            </Head>
-           {children}
+           
+           {/* document body */}
+           <Fragment>
+            {children}
+           </Fragment>
        </Fragment>
     )
 }
