@@ -29,11 +29,9 @@ const NavItemRight = ({navItemsRight}) => {
                           {item.menuItems.map((menu) => {
                             return (
                               <li className="nav-dropdown-menu-item">
-                                <Link href={menu.menuLink}>
-                                  <a className="nav-dropdown-menu-item-link">
-                                    {menu.menuLabel}
-                                  </a>
-                                </Link>
+                                <a href={menu.menuLink} className="nav-dropdown-menu-item-link">
+                                  {menu.menuLabel}
+                                </a>
                               </li>
                             );
                           })}

@@ -1,26 +1,27 @@
+// @ts-nocheck
 // dependency imports
 import React, { Fragment, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import {arrayResolver, appendCommas} from '../../../lib/formatter';
-import * as appRedux from '../../../redux/application/index';
-import * as therpistAuthRedux from '../../../redux/therapist/index';
+import {arrayResolver, appendCommas} from '@lib/formatter';
+import * as appRedux from '@redux/application/index';
+import * as therpistAuthRedux from '@redux/therapist/index';
 
 // component imports
-import {withAuth} from '../../../components/Therapist/identity/HOC/withAuth';
-import TherapistLayout from '../../../layouts/TherapistLayout';
-import Navbar from '../../../components/UI/Navbar/Navbar';
-import PersonalDetails  from '../../../components/Therapist/profile/PersonalDetails/PersonalDetails';
-import Button from '../../../components/UI/Button/Button';
-import {ModalFooter, ModalBody} from '../../../components/UI/Modal/Modal';
+import {withAuth} from '@components/Therapist/identity/HOC/withAuth';
+import TherapistLayout from '@layouts/TherapistLayout';
+import Navbar from '@components/UI/Navbar/Navbar';
+import PersonalDetails  from '@components/Therapist/profile/PersonalDetails/PersonalDetails';
+import Button from '@components/UI/Button/Button';
+import {ModalFooter, ModalBody} from '@components/UI/Modal/Modal';
 
 // dynamic component imports
-const Loader = dynamic(() => import('../../../components/UI/Loader/Loader'));
-const Progressbar = dynamic(() => import('../../../components/UI/Progressbar/Progressbar'));
-const ProfessionalDetails = dynamic(() => import('../../../components/Therapist/profile/ProfessionalDetails/ProfessionalDetails'));
-const Modal = dynamic(() => import('../../../components/UI/Modal/Modal'));
+const Loader = dynamic(() => import('@components/UI/Loader/Loader'));
+const Progressbar = dynamic(() => import('@components/UI/Progressbar/Progressbar'));
+const ProfessionalDetails = dynamic(() => import('@components/Therapist/profile/ProfessionalDetails/ProfessionalDetails'));
+const Modal = dynamic(() => import('@components/UI/Modal/Modal'));
 
 // create therapist profile page
 const Create = () => {

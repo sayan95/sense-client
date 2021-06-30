@@ -1,26 +1,26 @@
+// @ts-nocheck
 // dependency imports
 import React, { Fragment, useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import dynamic from 'next/dynamic';
 import {useRouter}  from 'next/router';
-import {useToasts} from 'react-toast-notifications';
-import * as appRedux from '../../../redux/application/index';
-import * as therapistAuthRedux from '../../../redux/therapist/index';
+import * as appRedux from '@redux/application/index';
+import * as therapistAuthRedux from '@redux/therapist/index';
 
 
 // component imports
-import TherapistLayout from '../../../layouts/TherapistLayout';
-import LeftPane from '../../../components/Therapist/identity/leftpane/LeftPane';
-import Rightpane from '../../../components/Therapist/identity/Rightpane/Rightpane';
-import LoginComponent from '../../../components/Therapist/identity/Rightpane/LoginComponent/LoginComponent';
-import Card from '../../../components/UI/Card/Card';
-import {withGuest} from '../../../components/Therapist/identity/HOC/WithGuest';
-import Progressbar from '../../../components/UI/Progressbar/Progressbar';
-import Loader from '../../../components/UI/Loader/Loader';
+import TherapistLayout from '@layouts/TherapistLayout';
+import LeftPane from '@components/Therapist/identity/leftpane/LeftPane';
+import Rightpane from '@components/Therapist/identity/Rightpane/Rightpane';
+import LoginComponent from '@components/Therapist/identity/Rightpane/LoginComponent/LoginComponent';
+import Card from '@components/UI/Card/Card';
+import {withGuest} from '@components/Therapist/identity/HOC/WithGuest';
+import Progressbar from '@components/UI/Progressbar/Progressbar';
+import Loader from '@components/UI/Loader/Loader';
 
 // dynamic component loads
-const SignupComponent = dynamic(() => import('../../../components/Therapist/identity/Rightpane/SignupComponent/SignupComponent'))
-const OTPVerificationComponent = dynamic(() => import('../../../components/Therapist/identity/Rightpane/OTPVerificationComponent/OTPVerificationComponent'));
+const SignupComponent = dynamic(() => import('@components/Therapist/identity/Rightpane/SignupComponent/SignupComponent'))
+const OTPVerificationComponent = dynamic(() => import('@components/Therapist/identity/Rightpane/OTPVerificationComponent/OTPVerificationComponent'));
 
 
 

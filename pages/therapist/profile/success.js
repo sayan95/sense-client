@@ -1,16 +1,17 @@
+// @ts-nocheck
 // dependency imports
 import React, { Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
-import * as appRedux from '../../../redux/application/index';
-import {withAuth} from '../../../components/Therapist/identity/HOC/withAuth';
+import * as appRedux from '@redux/application/index';
+import {withAuth} from '@components/Therapist/identity/HOC/withAuth';
 
 // component imports
-import TherapistLayout from '../../../layouts/TherapistLayout';
-import Button from '../../../components/UI/Button/Button';
-import BigFooter from '../../../components/UI/BigFooter/BigFooter';
-import Loader from '../../../components/UI/Loader/Loader';
+import TherapistLayout from '@layouts/TherapistLayout';
+import Button from '@components/UI/Button/Button';
+import BigFooter from '@components/UI/BigFooter/BigFooter';
+import Loader from '@components/UI/Loader/Loader';
 
 // profile create success page
 const Success = () => {
@@ -47,9 +48,7 @@ const Success = () => {
                                 <h3>Nice! You are done</h3>
                                 <p>{success ? success : 'Thanks for joining us. We will cacth you soon :)'}</p>
                                 <Link href='/therapist/profile?subject=bio'>
-                                    <a>
-                                    <Button color='primary'> Let's have look to your profile</Button>
-                                    </a>
+                                    <a><Button color='primary'> Let's have look to your profile</Button></a>
                                 </Link>
                             </div>
                         </div>

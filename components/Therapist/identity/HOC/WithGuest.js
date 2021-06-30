@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import * as therapistAuthRedux from "../../../../redux/therapist/index";
-import * as appRedux from '../../../../redux/application/index';
-import redirect from '../../../../lib/redirect_service';
+import * as therapistAuthRedux from "@redux/therapist/index";
+import redirect from '@lib/redirect_service';
 import { useDispatch } from "react-redux";
 
 // HOC component for guest pages
@@ -9,14 +8,16 @@ export const withGuest = (WrappedComponent) => {
   const GuestComponent = (props) => {
     // dependencies
     const dispatch = useDispatch();
-    
+    const { isLoggedIn, user } = props; 
+
     // serverside and client sync
-    useEffect(()=> {
-      if(props.isLoggedIn){                                                             // load store with the auth user
-        dispatch(therapistAuthRedux.actions.setTherapistUser(props.user));
-        dispatch(therapistAuthRedux.actions.setAuthLoggedIn(props.isLoggedIn));
+    useEffect(() => {
+      console.log(isLoggedIn);
+      if(isLoggedIn){                                                             // load store with the auth user
+        dispatch(therapistAuthRedux.actions.setTherapistUser(user));
+        dispatch(therapistAuthRedux.actions.setAuthLoggedIn(isLoggedIn));
       }
-    }, [props.isLoggedIn]);
+    }, [isLoggedIn, user]);
 
     // return the new component
     return <WrappedComponent {...props}/>;
@@ -39,7 +40,7 @@ export const withGuest = (WrappedComponent) => {
             redirect(ctx, '/therapist/profile?subject=bio');
         }
     }
-
+    
     return {isLoggedIn, user}
   };
 
